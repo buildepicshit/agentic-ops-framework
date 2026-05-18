@@ -1,0 +1,24 @@
+# Machine-local agent state
+.claude/settings.local.json
+.codex
+.mcp.json
+.mcp.local.json
+.superpowers/
+CLAUDE.local.md
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# IDE state
+.idea/
+.vscode/
+.helix/
+*.swp
+*.swo
+
+# Scratch & debug
+*.log
+*.tmp
+out.txt
+scratch_*
