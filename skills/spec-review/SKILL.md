@@ -57,7 +57,7 @@ Per SPEC §10 and SPEC.schema §5:
 | `SPEC.md` with `type: contract` | §10.3 Contract gate | `c` (the autonomous-dispatch runner-grade) | **REQUIRED** |
 | `SPEC.md` with `type: decision` | §10.4 Decision gate | `b-plus-candidates` | RECOMMENDED |
 
-Detailed per-type criteria, including studio-principle additional
+Detailed per-type criteria, including fleet-principle additional
 checks: see `references/per-type-gates.md`.
 
 ## Lint invocation
@@ -81,9 +81,9 @@ RECOMMENDED. The skill SHOULD run it and record advisory entries;
 it MUST NOT treat lint exit 1 as blocking for these types unless
 the gate otherwise requires the underlying check.
 
-## Contract capture-after defer-shorthand check (2026-05-17)
+## Contract capture-after defer-shorthand check
 
-Per the 2026-05-17 ceremony-weight-refactor Decision SPEC §7,
+Per the ceremony-weight Decision (`judgment://agent-synthesis`),
 Contract SPECs landing at `status: verified` via the
 capture-after exception MAY use a one-paragraph defer-shorthand
 in §1 Problem Statement and §13 Test and Validation Matrix. The
@@ -114,7 +114,7 @@ with: `capture-after-defer-shorthand: not permitted at status:
 `needs-revision`.
 
 This check is BLOCKING per
-`file://specs/2026-05-17-ceremony-weight-refactor/SPEC.md` §7
+`judgment://agent-synthesis` §7
 "the Contract per-type gate verifying that any capture-after
 defer-shorthand resolves to a cited IDEA section".
 
@@ -232,7 +232,7 @@ artefact.
   `same-family-review: <model>` and surface it as an `advisory`
   finding. See `file://your model-routing policy` "Routing Matrix"
   row for Spec review and
-  `file://specs/2026-05-04-agent-parallelism-and-model-routing-v2/SPEC.md`
+  `judgment://agent-synthesis`
   §7.3.
 
 ## Output to caller

@@ -30,7 +30,7 @@ Skip when:
   emit a single TASK.md and proceed.
 - The SPEC is a Decision SPEC (Decision SPECs do not have
   implementation phases; their cascade is by id-citation per
-  `file://specs/2026-05-02-studio-principle-ai/SPEC_EVIDENCE.md` §3).
+  `judgment://agent-synthesis` §3).
 
 ## Preconditions
 
@@ -44,7 +44,7 @@ REFUSE to proceed unless:
 4. Open Questions resolved.
 5. Write ownership can be bounded (each slice has disjoint
    `owned_files` per
-   `file://specs/2026-05-04-agent-parallelism-and-model-routing-v2/SPEC.md`
+   `judgment://agent-synthesis`
    §6.1.1).
 
 If any precondition fails, stop and surface the exact blocker with a
@@ -109,7 +109,7 @@ file/line citation. Do NOT emit TASK.md files.
 8. Surface the decomposition to the owner with the Decomposition
    Index and the Parallelism Decision Record (Decision: `fanout` |
    `local`; Rationale: …; Lanes: …) per
-   `file://specs/2026-05-04-agent-parallelism-and-model-routing-v2/SPEC.md`
+   `judgment://agent-synthesis`
    §8.1.
 9. Owner reviews the decomposition. **One-shot approval**, not
    per-task. On owner directive, flip the parent SPEC's status

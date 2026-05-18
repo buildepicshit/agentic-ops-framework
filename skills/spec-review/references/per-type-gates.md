@@ -85,9 +85,9 @@ All criteria are **blocking** unless tagged `advisory`.
 - Locks section present (MAY state `no locks` with reason).
 - Reversal Plan present (MAY state `irreversible: <reason>`).
 
-### Studio-principle Decision SPECs — additional check
+### Fleet-principle Decision SPECs — additional check
 
-When the SPEC slug matches `studio-principle-*` (per
+When the SPEC slug matches `principle-*` (per
 `file://skills/spec-authoring/SKILL.md`), apply the
 **verbatim-to-normative trace** check in addition to the standard
 Decision gate:
@@ -100,7 +100,7 @@ Decision gate:
   Record as `criterion: principle-not-owner-anchored`,
   `severity: blocking`; route to `needs-revision`.
 - Authority:
-  `file://specs/2026-05-02-studio-principle-ai/SPEC_EVIDENCE.md`
+  `judgment://agent-synthesis`
   §5 ("Trace-from-verbatim-to-normative is the principle SPEC
   quality signature").
 

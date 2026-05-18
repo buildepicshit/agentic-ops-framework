@@ -209,8 +209,8 @@ Public interfaces affected:
 ## 11. Execution Plan
 
 1. Author `.github/workflows/ci.yml`.
-2. Author `tests/hooks/run-tests.sh` adapting the BES-internal
-   33-case harness pattern with sandbox-fixture creation.
+2. Author `tests/hooks/run-tests.sh` adapting a 33-case
+   harness pattern with hermetic sandbox-fixture creation.
 3. Author the two commit-message fixtures.
 4. Run `bash tests/hooks/run-tests.sh` locally. Verify 33/33
    pass.

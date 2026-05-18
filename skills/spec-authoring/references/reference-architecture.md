@@ -33,12 +33,13 @@ Procedure:
 6. The SPEC's design proposes the gap-closing primitives only; it
    does NOT re-derive what the reference already specifies.
 
-Example: `file://specs/2026-05-09-symphony-aligned-execution-layer/SPEC.md`
-mirrored OpenAI the autonomous-dispatch runner's per-issue isolated workspace contract
-(`url://https://raw.githubusercontent.com/openai/symphony/main/SPEC.md`)
-rather than re-deriving the dispatch model. See
-`file://specs/2026-05-09-symphony-aligned-execution-layer/SPEC_EVIDENCE.md`
-§2 for the disposition.
+Example: a SPEC adopting an issue-tracker-dispatch runner
+mirrors the runner's per-issue isolated workspace contract
+(cited via `url://` from the runner's published spec) rather
+than re-deriving the dispatch model. The SPEC's design
+section only proposes the gap-closing primitives — citation
+discipline, owner-only authority transitions, fleet
+propagation — that the runner does not cover.
 
 ## External tool adoption shape
 
@@ -47,7 +48,7 @@ runner), use this six-part shape:
 
 1. **Decision SPEC** selecting the tool over alternatives. Cites
    the upstream repo + docs in §4 Authority Map; trade-off matrix
-   in §6 covers the studio-specific criteria (procedure binding,
+   in §6 covers the fleet-specific criteria (procedure binding,
    coexistence with existing tooling, citation+authority
    preservation, OSS posture, agent skill surface, maintenance
    cost).
@@ -62,8 +63,8 @@ runner), use this six-part shape:
    (lint-spec on staged artefacts, parent-SPEC acceptance on
    merge, evidence reminders, removal guards).
 5. **`OPERATING_MODEL.md`** section documenting the tool
-   boundary against existing fleet tooling (e.g., "use X for
-   autonomous; use Y for owner-led").
+   boundary against existing fleet tooling (e.g., the
+   autonomous-vs-interactive dispatcher boundary).
 6. **`agents/SKILL_REGISTRY.md`** row in the supplementary skill
    table.
 
@@ -71,8 +72,7 @@ runner), use this six-part shape:
 `scripts/fleet-files.txt`. `.config/<tool>.<ext>` is
 overwritten on each sync; per-repo edits are drift.
 
-Reference: `file://specs/2026-05-09-fleet-adopt-worktrunk/SPEC.md`
-+ `file://specs/2026-05-09-fleet-adopt-worktrunk-execute/SPEC.md`
-exercised this shape for `worktrunk` adoption. Both
-SPEC_EVIDENCE.md §2 PROMOTED the pattern as the disposition that
-landed here.
+The framework exercised this six-part shape when adopting
+worktree-based parallel-agent tooling (`judgment://agent-
+synthesis`). The SPEC_EVIDENCE entry from that adoption
+promoted the pattern as the disposition that landed here.

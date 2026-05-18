@@ -1,0 +1,7 @@
+# fleet-known-repos.txt — plain-text manifest of every repo that send-fleet-message.sh
+# accepts as a target. One repo name per line. Lines starting with `#` and blank
+# lines are skipped. Override the file location with FLEET_KNOWN_REPOS_FILE.
+#
+# Default is empty: a single-repo project does not use cross-repo messaging.
+# Populate with one entry per child + the source policy repo when adopting the
+# fleet pattern.

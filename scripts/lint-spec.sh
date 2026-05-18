@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# lint-spec.sh — v1 lint for BES IDEA.md and SPEC.md artefacts.
+# lint-spec.sh — v1 lint for IDEA.md and SPEC.md artefacts.
 #
-# Authority: file://specs/2026-05-01-bes-spec-authoring-procedure-v1/SPEC.md
-#   §10.5 (lint requirements), §17.5 (reference algorithm), §9.1–§9.4
-#   (per-type required sections), §8 / agents/specs/SPEC.schema.md
-#   (citation grammar, RFC 2119 rules, front-matter schema).
+# Authority: file://OPERATING_MODEL.md §"Spec Lifecycle" and
+#   file://templates/SPEC.schema.md (citation grammar, RFC 2119
+#   scoping rules, front-matter schema).
 #
 # Behavior is non-mutating and offline. The script reads the target
 # file, prints a summary to stdout, prints diagnostics to stderr, and
@@ -117,11 +116,10 @@ case "$ARTEFACT-$TYPE" in
             "Completion Report"
         ) ;;
     spec-contract)
-        # Per 2026-05-17 ceremony-weight-refactor Decision SPEC §7,
-        # "Open Questions" is OPTIONAL when empty — removed from the
-        # required list. Authors MAY omit the heading entirely when no
-        # open questions remain. Existing Contracts that retain §17
-        # with substantive content remain unaffected (existing
+        # "Open Questions" is OPTIONAL when empty — omitted from the
+        # required list. Authors MAY drop the heading entirely when no
+        # open questions remain. Existing Contracts that retain the
+        # section with substantive content remain unaffected (existing
         # per-section citation checks still apply when present).
         required_sections=(
             "Normative Language"

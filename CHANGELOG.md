@@ -5,6 +5,54 @@ All notable changes to this project. Format loosely follows
 date-stamped releases. Versions before v1.0 were README-only
 milestones; v1.0 is the first git-tagged release.
 
+## v1.1 — 2026-05-18
+
+Catalog expansion, cross-repo abstract patterns, and contributor
+docs. No breaking changes; v1.0 consumers can adopt v1.1 by
+copying the new skills + scripts.
+
+### Added
+
+- **Six new skills** lifting the catalog from 14 to 20:
+  - `spec-driven-development` — 13-phase lifecycle skill.
+  - `agents-md-improver` — entry-doc audit + canonical-pattern
+    drift detection.
+  - `agent-feedback` — outbound-to-fleet friction-surface
+    workpad pattern.
+  - `caveman` — opt-in compressed communication mode (safety
+    exceptions baked in).
+  - `cross-repo-policy-enforcement` — fleet-wide policy
+    directive pattern with shell-block compliance checks.
+  - `cross-repo-informational-channel` — per-repo
+    `AGENT_INBOX.md` pattern for structured handoffs +
+    fleet-update notices.
+- **Two cross-repo scripts**:
+  - `scripts/audit-fleet-compliance.sh` runs every directive's
+    §3 shell-block compliance check against each named target;
+    exit 0 iff every (directive × target) pair passes.
+  - `scripts/send-fleet-message.sh` appends a structured entry
+    to another repo's `AGENT_INBOX.md` and commits with a
+    `fleet(inbox): …` message.
+- **`workpads/AGENT_INBOX.template.md`** — the inbound channel
+  template each fleet repo plants at its root for cross-repo
+  informational messages.
+- **`scripts/fleet-known-repos.txt`** manifest — `send-fleet-
+  message.sh` reads valid target repo names from this file
+  instead of a hardcoded array. Empty by default; single-repo
+  projects need not populate it.
+- **`CONTRIBUTING.md`** + **`CODE_OF_CONDUCT.md`** — how to
+  contribute under the framework's own IDEA → SPEC →
+  review → approve → execute → verify lifecycle.
+
+### Changed
+
+- Generic-fleet-friendly rename: `studio-principle-<topic>` slug
+  taxonomy → `principle-<topic>`. `Studio Principles` skill
+  section + per-type-gate check renamed to fleet-principle.
+- `audit-entry-docs.sh` advisory phrasing on missing
+  `WORKFLOW.md`: generic "issue-tracker-dispatch contract"
+  replaces tool-specific naming.
+
 ## v1.0 — 2026-05-18
 
 First tagged release. The framework is adoptable end-to-end:

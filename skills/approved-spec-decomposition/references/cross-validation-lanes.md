@@ -4,7 +4,7 @@ Extracted from
 `file://agents/skills/approved-spec-decomposition/SKILL.md` per
 the references/ progressive-disclosure convention (SE1 capture
 in
-`file://specs/2026-05-15-inbox-channel-and-skill-references-pattern/SPEC_EVIDENCE.md`).
+`judgment://agent-synthesis`).
 
 ## When to read this
 
@@ -50,7 +50,7 @@ names the lane.
 ## Fallback when cross-family dispatch is impossible
 
 Per SE2 (capture in
-`file://specs/2026-05-17-contract-corpus-retrospective-audit/SPEC_EVIDENCE.md`),
+`judgment://agent-synthesis`),
 when the execution context cannot dispatch cross-family (e.g.
 Claude Code only spawns Claude-family subagents), the honest
 path is same-family proxy + clearly-labelled deferral. This

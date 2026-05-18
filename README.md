@@ -23,10 +23,12 @@ adoption. We eat our own dog food. Your mileage may vary.
 | `scripts/preflight.mjs` | Workspace-layout preflight gate — MCP config status, codex CLI presence, fleet-content presence, unmanaged top-level entries (v0.5.2) |
 | `scripts/preflight-config.example.json` | Example preflight topology + allowlist config; rename to drop `.example.` to activate |
 | `scripts/fleet-*.example.txt` | Example manifest files (skills, slash-commands, hooks, hook fixtures, OSS-posture gitignore entries, internal-repo list, OSS-repo list, local-only repo list) |
-| `skills/` | Fourteen skills covering the full lifecycle + multi-repo patterns: `repo-orientation`, `spec-authoring`, `spec-review`, `fast-path`, `approved-spec-decomposition`, `implementation-execution`, `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `tdd`, `diagnosis`, `owner-led-parallel-worktrees`, `autonomous-issue-dispatch` |
+| `skills/` | Twenty skills covering the full lifecycle, multi-repo patterns, and meta-skills: `repo-orientation`, `spec-authoring`, `spec-review`, `fast-path`, `approved-spec-decomposition`, `implementation-execution`, `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `tdd`, `diagnosis`, `owner-led-parallel-worktrees`, `autonomous-issue-dispatch`, `spec-driven-development`, `agents-md-improver`, `agent-feedback`, `caveman`, `cross-repo-policy-enforcement`, `cross-repo-informational-channel` |
 | `hooks/` | Seven Claude Code hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |
 | `workflow/UNIVERSAL.md` | Universal-mode WORKFLOW body shared across all agent contexts |
-| `workpads/` | Per-repo append-only workpad templates: `AGENT_FEEDBACK`, `SESSION_JOURNAL` |
+| `workpads/` | Per-repo append-only workpad templates: `AGENT_FEEDBACK`, `SESSION_JOURNAL`, `AGENT_INBOX` |
+| `scripts/audit-fleet-compliance.sh` | Cross-repo policy directive auditor (v1.1) — walks `agents/fleet-directives/*.md` and runs each directive's compliance check against named target repos |
+| `scripts/send-fleet-message.sh` | Cross-repo informational-channel helper (v1.1) — appends structured entries to a target repo's `AGENT_INBOX.md` |
 | `OPERATING_MODEL.md` | Operating model: lifecycle, types, citation discipline, memory boundary, safety invariants |
 | `tests/hooks/` | Hook test harness (33 cases) verifying every hook's block-path, allow-path, and false-positive behavior |
 | `.github/workflows/ci.yml` | CI gates lint, skill-frontmatter, hook tests, and preflight on every push |

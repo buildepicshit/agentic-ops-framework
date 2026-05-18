@@ -89,12 +89,12 @@ audit_internal_repo() {
         printf '%s/AGENT_INBOX.md:1: ADVISORY — missing AGENT_INBOX.md (incoming message channel; auto-bootstrapped on next fleet-sync from .agents/templates/AGENT_INBOX.template.md)\n' "$repo_name" >&2
     fi
 
-    # WORKFLOW.md ADVISORY for internal repos (Symphony-compatible dispatch).
-    # Required by OPERATING_MODEL §"Symphony Readiness" for active product
-    # repos; your-policy-repo is policy infrastructure and may legitimately
-    # lack one. Auditor reports absence as advisory, not blocking.
+    # WORKFLOW.md ADVISORY for internal repos (issue-tracker-dispatch contract).
+    # Recommended by OPERATING_MODEL §"Dispatch Readiness" for active product
+    # repos; the source policy repo is policy infrastructure and may
+    # legitimately lack one. Auditor reports absence as advisory, not blocking.
     if [ ! -f "$repo_dir/WORKFLOW.md" ]; then
-        printf '%s/WORKFLOW.md:1: ADVISORY — missing WORKFLOW.md (Symphony dispatch contract; required for active product repos per OPERATING_MODEL §Symphony Readiness)\n' "$repo_name" >&2
+        printf '%s/WORKFLOW.md:1: ADVISORY — missing WORKFLOW.md (issue-tracker-dispatch contract; recommended for active product repos per OPERATING_MODEL §Dispatch Readiness)\n' "$repo_name" >&2
     elif [ "$repo_name" != "your-policy-repo" ]; then
         # WORKFLOW.body drift check: each repo's WORKFLOW.md MUST contain
         # the fleet-baseline prompt body from agents/templates/WORKFLOW.body.md

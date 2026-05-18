@@ -11,8 +11,8 @@ It exists to keep the spec-first discipline applicable to tiny
 non-trivial work without forcing a 13-phase song-and-dance for a
 one-file fix.
 
-Authority:
-`file://specs/2026-05-13-framework-refresh-lightweight-ceremony/SPEC.md`;
+Authority: `judgment://agent-synthesis` (the
+framework-refresh-lightweight-ceremony Decision);
 `file://templates/SPEC.fastpath.template.md`.
 
 ## Thresholds (ALL must be true)

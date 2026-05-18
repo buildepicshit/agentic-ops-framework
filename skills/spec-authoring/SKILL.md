@@ -77,11 +77,12 @@ RFC 2119 rules, section naming) live in `templates/SPEC.schema.md`.
 Templates reference that schema rather than restating it. Read the
 schema before authoring.
 
-In `your-policy-repo`, the produced IDEA.md and SPEC.md live at
-`specs/<spec_id>/`. In each child product repo (ACTOCCATUD, Floom,
-IKTO, Mimir, UsefulIdiots, Wick) they live at
-`.templates/<spec_id>/`. The workflow doc at
-`agents/workflows/idea-capture.md` encodes this branch.
+The produced IDEA.md and SPEC.md live at `specs/<spec_id>/` in
+the repo that owns the work. In a fleet topology the source
+policy repo holds fleet-policy specs under `specs/`; each
+child repo holds its own work under `.agents/specs/` (or
+equivalent gitignored path for OSS-posture repos). Pick the
+location based on which repo owns the change.
 
 ## Type Selection
 
@@ -130,10 +131,9 @@ Edge cases:
 - Owner explicitly directs a type via `judgment://owner`: honour the
   directive; do not re-derive.
 
-## Contract §17 OPTIONAL when empty (2026-05-17)
+## Contract §17 OPTIONAL when empty
 
-Per the 2026-05-17 ceremony-weight-refactor Decision SPEC §7
-(`file://specs/2026-05-17-ceremony-weight-refactor/SPEC.md`),
+Per the ceremony-weight Decision (`judgment://agent-synthesis`),
 Contract SPEC §17 Open Questions is OPTIONAL when empty:
 
 - Authors MAY omit the §17 heading entirely when no open
@@ -146,9 +146,9 @@ Contract SPEC §17 Open Questions is OPTIONAL when empty:
 This relaxation only applies to Contract SPECs; Task and
 Decision SPECs continue to require §17.
 
-## Contract §1 / §13 capture-after defer-shorthand (2026-05-17)
+## Contract §1 / §13 capture-after defer-shorthand
 
-Per the same Decision SPEC §7, Contract SPECs landing at
+Per the same ceremony-weight Decision, Contract SPECs landing at
 `status: verified` via the capture-after exception
 (`file://templates/SPEC.schema.md` §1.3) MAY use a
 defer-shorthand for §1 Problem Statement and §13 Test and
@@ -169,11 +169,11 @@ For Contracts at any other status (`draft`, `approved`,
 `in-execution`), §1 and §13 MUST be filled with substantive
 content; defer-shorthand is rejected by the spec-review gate.
 
-## Studio Principles
+## Fleet-Wide Principle SPECs
 
-Studio-level principles (binding tenets that cross every the studio
-product) are authored as Decision SPECs under the
-`studio-principle-<topic>` slug taxonomy.
+Fleet-level principles (binding tenets that cross every
+fleet product) are authored as Decision SPECs under the
+`principle-<topic>` slug taxonomy.
 
 Conventions, cascade-by-id-citation mechanics, and the
 verbatim-to-normative review trace:
