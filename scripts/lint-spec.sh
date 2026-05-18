@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# lint-spec.sh — v1 lint for IDEA.md and SPEC.md artefacts.
+# lint-spec.sh — v1 lint for BES IDEA.md and SPEC.md artefacts.
 #
-# Authority: file://specs/2026-01-15-example-procedure-v1/SPEC.md
+# Authority: file://specs/2026-05-01-bes-spec-authoring-procedure-v1/SPEC.md
 #   §10.5 (lint requirements), §17.5 (reference algorithm), §9.1–§9.4
-#   (per-type required sections), §8 / templates/SPEC.schema.md
+#   (per-type required sections), §8 / agents/specs/SPEC.schema.md
 #   (citation grammar, RFC 2119 rules, front-matter schema).
 #
 # Behavior is non-mutating and offline. The script reads the target
@@ -117,7 +117,7 @@ case "$ARTEFACT-$TYPE" in
             "Completion Report"
         ) ;;
     spec-contract)
-        # Per 2026-01-15 ceremony-weight-refactor Decision SPEC §7,
+        # Per 2026-05-17 ceremony-weight-refactor Decision SPEC §7,
         # "Open Questions" is OPTIONAL when empty — removed from the
         # required list. Authors MAY omit the heading entirely when no
         # open questions remain. Existing Contracts that retain §17
@@ -368,7 +368,7 @@ content_heavy_title() {
     return 1
 }
 
-CITE_RE='(file://|cmd://|url://|owner://|judgment://owner|judgment://agent-synthesis)'
+CITE_RE='(file://|cmd://|url://|owner://|decision-authority://|judgment://owner|judgment://agent-synthesis)'
 SUPPRESS_CITE='<!-- lint-ok: no-citation -->'
 
 # Pre-scan: count citation prefixes per section (for inheritance).
@@ -591,7 +591,7 @@ done
 # ---------- Summary ----------
 n_sections=${#observed_titles[@]}
 n_cites=0
-for prefix in 'file://' 'cmd://' 'url://' 'owner://' 'judgment://owner' 'judgment://agent-synthesis'; do
+for prefix in 'file://' 'cmd://' 'url://' 'owner://' 'decision-authority://' 'judgment://owner' 'judgment://agent-synthesis'; do
     c=$(grep -c -F -- "$prefix" "$TARGET" || true)
     n_cites=$((n_cites + c))
 done
