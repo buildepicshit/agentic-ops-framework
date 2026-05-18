@@ -18,6 +18,8 @@ adoption. We eat our own dog food. Your mileage may vary.
 | `scripts/validate-skill-frontmatter.sh` | Skill frontmatter validator |
 | `scripts/fleet-sync.sh` | Manifest-driven multi-repo propagation (v0.5) — copies fleet baseline from a source policy repo into N target repos |
 | `scripts/audit-entry-docs.sh` | Audit AGENTS.md / CLAUDE.md / GEMINI.md / WORKFLOW.md presence + canonical-pattern adherence across all fleet repos (v0.5.1) |
+| `scripts/preflight.mjs` | Workspace-layout preflight gate — MCP config status, codex CLI presence, fleet-content presence, unmanaged top-level entries (v0.5.2) |
+| `scripts/preflight-config.example.json` | Example preflight topology + allowlist config; rename to drop `.example.` to activate |
 | `scripts/fleet-*.example.txt` | Example manifest files (skills, slash-commands, hooks, hook fixtures, OSS-posture gitignore entries, internal-repo list, OSS-repo list, local-only repo list) |
 | `skills/` | Six procedure-only skills: `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `diagnosis`, `tdd` |
 | `hooks/` | Seven Claude Code hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |

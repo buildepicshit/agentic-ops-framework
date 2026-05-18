@@ -1,0 +1,67 @@
+{
+  "$schema": "preflight-config.schema (informal)",
+  "_doc": "Topology + allowlist config consumed by preflight.mjs. Edit this file to change what the preflight gate considers a known repo / allowed top-level / product-repo-specific extension. Keep in sync with fleet-internal-repos.txt / fleet-oss-repos.txt manifest files.",
+
+  "activeRepos": [
+    "ACTOCCATUD",
+    "Floom",
+    "IKTO",
+    "Mimir",
+    "TieFighter",
+    "UsefulIdiots",
+    "Wick"
+  ],
+
+  "publicOssRepos": ["Mimir", "Wick"],
+
+  "rootWorkspaceAllowedTopLevel": [
+    ".agents",
+    ".claude",
+    ".codex",
+    ".config",
+    ".git",
+    ".githooks",
+    ".gitignore",
+    ".mcp.example.json",
+    ".mcp.json",
+    "ACTOCCATUD",
+    "AGENT_FEEDBACK.md",
+    "AGENT_INBOX.md",
+    "AGENTS.md",
+    "Assets",
+    "CLAUDE.md",
+    "Floom",
+    "IKTO",
+    "Mimir",
+    "ModelSandbox",
+    "NewIdeas",
+    "SESSION_JOURNAL.md",
+    "Symphony",
+    "TieFighter",
+    "UnityTest",
+    "UsefulIdiots",
+    "Wick",
+    "WickTestProject",
+    "WORKFLOW.md",
+    "agentic-ops-framework",
+    "bes-blender-mcp",
+    "bes-fleet-policy",
+    "content_store.db.backup",
+    "docs",
+    "external-comms",
+    "tools",
+    "wick-public-test-targets"
+  ],
+
+  "productRepoCommonExtraTopLevel": [
+    "IDEATION.md",
+    "STATUS.md",
+    "SESSION_JOURNAL.md",
+    "AGENT_FEEDBACK.md",
+    "AGENT_INBOX.md"
+  ],
+
+  "productRepoAllowedTopLevel": {
+    "IKTO": ["unity"]
+  }
+}
