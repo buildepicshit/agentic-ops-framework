@@ -1,0 +1,7 @@
+# Hook test fixtures your fleet-sync propagates to
+# .claude/hooks/tests/fixtures/ in each target repo. One filename per
+# line. Used by the hook test harness (see scripts/run-tests.sh if you
+# ship one).
+#
+# Default: empty. Framework v0.1 ships no hook test harness; v1.0 will
+# add one with the corresponding fixture set.

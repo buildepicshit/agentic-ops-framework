@@ -1,0 +1,37 @@
+# Canonical agents/ content list propagated to each target repo's
+# .agents/ directory. One repo-relative path per line (relative to
+# `agents/` in the source repo). Lines starting with `#` and blanks
+# are ignored.
+#
+# Auto-create-parent-dirs is on: skill-local references/<topic>.md
+# entries propagate without requiring extra mkdir loops.
+#
+# This file is studio-specific by design. Replace the example entries
+# below with the actual list of artefacts your studio's policy repo
+# canonicalizes. The file is read by `fleet-sync.sh`.
+
+# Example: an OPERATING_MODEL doc + the schema + templates + scripts
+# + skills propagate to each target's .agents/.
+
+# OPERATING_MODEL.md
+# specs/SPEC.schema.md
+# specs/SPEC.task.template.md
+# specs/SPEC.contract.template.md
+# specs/SPEC.decision.template.md
+# specs/SPEC.fastpath.template.md
+# specs/IDEA.template.md
+# specs/TASK.template.md
+# scripts/lint-spec.sh
+# scripts/validate-skill-frontmatter.sh
+# scripts/fleet-sync.sh
+# scripts/fleet-skills.txt
+# scripts/fleet-commands.txt
+# scripts/fleet-hooks.txt
+# scripts/fleet-hook-fixtures.txt
+# scripts/fleet-oss-gitignore.txt
+# skills/code-review/SKILL.md
+# skills/diagnosis/SKILL.md
+# skills/release-pr/SKILL.md
+# skills/spec-evidence-governance/SKILL.md
+# skills/tdd/SKILL.md
+# skills/verification/SKILL.md

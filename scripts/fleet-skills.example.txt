@@ -1,0 +1,13 @@
+# Skills your fleet-sync propagates to .agents/skills/ and mirrors to
+# .claude/skills/ in each target repo. One skill name per line.
+# Lines starting with `#` and blanks are ignored.
+#
+# Default: the six procedure-only skills shipped with the framework v0.1.
+# Add your own skill directories here as you author them.
+
+code-review
+diagnosis
+release-pr
+spec-evidence-governance
+tdd
+verification

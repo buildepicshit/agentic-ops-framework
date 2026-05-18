@@ -16,6 +16,8 @@ adoption. We eat our own dog food. Your mileage may vary.
 | `templates/` | IDEA + 4 SPEC type templates (task / contract / decision / fastpath) + TASK template for decomposition |
 | `scripts/lint-spec.sh` | Per-type quality-gate lint over IDEA / SPEC artefacts |
 | `scripts/validate-skill-frontmatter.sh` | Skill frontmatter validator |
+| `scripts/fleet-sync.sh` | Manifest-driven multi-repo propagation (v0.5) — copies fleet baseline from a source policy repo into N target repos |
+| `scripts/fleet-*.example.txt` | Example manifest files showing the propagation format (skills, slash-commands, hooks, hook fixtures, OSS-posture gitignore entries) |
 | `skills/` | Six procedure-only skills: `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `diagnosis`, `tdd` |
 | `hooks/` | Seven Claude Code hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |
 | `workflow/UNIVERSAL.md` | Universal-mode WORKFLOW body shared across all agent contexts |
@@ -24,11 +26,20 @@ adoption. We eat our own dog food. Your mileage may vary.
 
 ## Status
 
-v0.1 — the "publishable with renaming only" content from a larger
-operating model. Subsequent releases will add the config-extracted
-audit tooling (v0.5) and the rewritten operating-model
+**v0.5** — adds `fleet-sync.sh` and the manifest-driven
+propagation pattern for multi-repo studios. The script ships
+its topology in plain-text manifests (one entry per line);
+edit the manifest to change what propagates without touching
+the script. Single-repo studios can ignore `fleet-sync.sh`
+entirely.
+
+v0.1 shipped the "publishable with renaming only" content
+(schema + templates + lint + hooks + 6 procedure-only skills +
+universal workflow body + workpad templates + operating model).
+
+**v1.0** (next) will add the rewritten operating-model
 documentation, additional skills, and synthetic worked-example
-SPECs (v1.0).
+SPECs.
 
 ## Design posture
 
@@ -46,6 +57,38 @@ SPECs (v1.0).
 - **Cross-family review** as a first-class merge gate for decomposed
   work — different model family from the implementer reviews the
   diff before it lands.
+
+## Multi-repo propagation (v0.5)
+
+If you run a multi-repo studio where one policy repo owns the
+canonical fleet content and N child repos consume it, the
+`scripts/fleet-sync.sh` script propagates the baseline. The
+topology lives in plain-text manifests next to the script:
+
+| Manifest | What it lists |
+|---|---|
+| `fleet-files.txt` | Paths under `agents/` that propagate to each target's `.agents/` |
+| `fleet-skills.txt` | Skill directory names (mirrored to `.agents/skills/` + `.claude/skills/`) |
+| `fleet-commands.txt` | Claude Code slash-command basenames |
+| `fleet-hooks.txt` | Claude Code hook script filenames |
+| `fleet-hook-fixtures.txt` | Hook test fixture filenames |
+| `fleet-oss-gitignore.txt` | `.gitignore` entries to inject for `posture=oss` targets |
+
+The repo ships these as `*.example.txt` so adopters rename
+them (drop `.example.`) and fill them in. Source path is
+auto-derived from script location; override with `FLEET_SOURCE`.
+
+Two postures:
+- `internal` — full content committed to the target repo;
+  `.agents/` and `.claude/` are tracked.
+- `oss` — content lays into the target's working tree only;
+  `.agents/`, `.claude/`, and the workpad files are appended to
+  `.gitignore`. For public OSS repos that adopt the framework
+  without leaking agent-control content to GitHub.
+
+Single-repo studios don't need this. The schema, templates,
+lint, hooks, skills, and workflow body work fine in one repo
+without propagation.
 
 ## What this is not
 

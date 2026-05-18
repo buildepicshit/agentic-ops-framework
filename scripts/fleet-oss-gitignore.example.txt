@@ -1,0 +1,5 @@
+.agents/
+.claude/
+AGENT_INBOX.md
+AGENT_FEEDBACK.md
+SESSION_JOURNAL.md

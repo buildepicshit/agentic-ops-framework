@@ -1,0 +1,7 @@
+block-ai-attribution.sh
+block-edit-on-main.sh
+block-git-add-all.sh
+block-push-to-main.sh
+block-verify-bypass.sh
+verify-reminder.sh
+session-start-context.sh

@@ -1,0 +1,13 @@
+# Claude Code slash-commands your fleet-sync propagates to
+# .claude/commands/ in each target repo. One command basename per line
+# (without the `.md` suffix).
+#
+# Default: empty. The framework v0.1 ships no slash-commands directly.
+# Author your own slash-commands in `.claude/commands/<name>.md` and
+# list their basenames here.
+
+# Example entries (delete the leading # to enable):
+# orient
+# author-spec
+# review-spec
+# verify-spec
