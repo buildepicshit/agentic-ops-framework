@@ -21,7 +21,7 @@ adoption. We eat our own dog food. Your mileage may vary.
 | `scripts/preflight.mjs` | Workspace-layout preflight gate — MCP config status, codex CLI presence, fleet-content presence, unmanaged top-level entries (v0.5.2) |
 | `scripts/preflight-config.example.json` | Example preflight topology + allowlist config; rename to drop `.example.` to activate |
 | `scripts/fleet-*.example.txt` | Example manifest files (skills, slash-commands, hooks, hook fixtures, OSS-posture gitignore entries, internal-repo list, OSS-repo list, local-only repo list) |
-| `skills/` | Six procedure-only skills: `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `diagnosis`, `tdd` |
+| `skills/` | Ten skills covering the lifecycle + multi-repo patterns: `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `diagnosis`, `tdd`, `approved-spec-decomposition`, `implementation-execution`, `owner-led-parallel-worktrees`, `autonomous-issue-dispatch` |
 | `hooks/` | Seven Claude Code hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |
 | `workflow/UNIVERSAL.md` | Universal-mode WORKFLOW body shared across all agent contexts |
 | `workpads/` | Per-repo append-only workpad templates: `AGENT_FEEDBACK`, `SESSION_JOURNAL` |
