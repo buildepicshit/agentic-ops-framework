@@ -1,5 +1,7 @@
 # agentic-ops-framework
 
+[![CI](https://github.com/buildepicshit/agentic-ops-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/buildepicshit/agentic-ops-framework/actions/workflows/ci.yml)
+
 A spec-driven operating-model framework for multi-agent software studios.
 Schemas, templates, lint, hooks, skills, and workpads for running
 non-trivial agent work through an IDEA → SPEC → review → approve →
@@ -26,6 +28,11 @@ adoption. We eat our own dog food. Your mileage may vary.
 | `workflow/UNIVERSAL.md` | Universal-mode WORKFLOW body shared across all agent contexts |
 | `workpads/` | Per-repo append-only workpad templates: `AGENT_FEEDBACK`, `SESSION_JOURNAL` |
 | `OPERATING_MODEL.md` | Operating model: lifecycle, types, citation discipline, memory boundary, safety invariants |
+| `tests/hooks/` | Hook test harness (33 cases) verifying every hook's block-path, allow-path, and false-positive behavior |
+| `.github/workflows/ci.yml` | CI gates lint, skill-frontmatter, hook tests, and preflight on every push |
+| `specs/` | Internal SPECs tracking the framework's own evolution (the framework dogfoods itself) |
+| `examples/` | Worked IDEA → SPEC pairs for all four SPEC types + a TASK.md decomposition |
+| `CHANGELOG.md` | Release history |
 
 ## Status
 

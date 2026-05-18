@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-spec:
+    name: lint worked examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Task example IDEA
+        run: bash scripts/lint-spec.sh examples/task-add-structured-logging/IDEA.md
+
+      - name: Lint Task example SPEC
+        run: bash scripts/lint-spec.sh examples/task-add-structured-logging/SPEC.md
+
+      - name: Lint Contract example IDEA
+        run: bash scripts/lint-spec.sh examples/contract-webhook-signing/IDEA.md
+
+      - name: Lint Contract example SPEC
+        run: bash scripts/lint-spec.sh examples/contract-webhook-signing/SPEC.md
+
+      - name: Lint Decision example IDEA
+        run: bash scripts/lint-spec.sh examples/decision-conventional-commits/IDEA.md
+
+      - name: Lint Decision example SPEC
+        run: bash scripts/lint-spec.sh examples/decision-conventional-commits/SPEC.md
+
+      - name: Lint Fastpath example SPEC
+        run: bash scripts/lint-spec.sh examples/fastpath-fix-readme-typo/SPEC.md
+
+  validate-skills:
+    name: validate skill frontmatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/validate-skill-frontmatter.sh
+
+  test-hooks:
+    name: hook test harness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install jq
+        run: sudo apt-get install -y jq
+      - name: Run hook tests
+        run: bash tests/hooks/run-tests.sh
+
+  preflight-self-check:
+    name: preflight runs clean on the framework
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preflight.mjs parses + runs
+        run: node --check scripts/preflight.mjs

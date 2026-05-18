@@ -1,0 +1,7 @@
+feat(example): add structured logging to auth service
+
+Replace ad-hoc log.Printf and fmt.Println calls in
+services/auth/ with structured zap-backed logging via the
+new authlog wrapper package.
+
+Implements §8 of the parent SPEC.

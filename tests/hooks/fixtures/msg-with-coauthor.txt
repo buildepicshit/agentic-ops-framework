@@ -1,0 +1,6 @@
+feat(example): add structured logging to auth service
+
+Replace ad-hoc log calls in services/auth/ with structured
+zap-backed logging via the new authlog wrapper package.
+
+Co-Authored-By: Claude <noreply@anthropic.com>
