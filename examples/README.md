@@ -25,9 +25,10 @@ Adopt by:
 |---|---|---|
 | `task-add-structured-logging/` | task | Replace ad-hoc log calls in a backend service with structured `zap` logging via a compile-time-enforced wrapper package |
 | `contract-webhook-signing/` | contract | HMAC-SHA256 outbound-webhook signing + verification protocol with key rotation, grace window, and per-language reference verifier snippets |
+| `decision-conventional-commits/` | decision | Adopt Conventional Commits 1.0.0 as the binding commit-message convention — 4-candidate trade-off, RFC 2119 keywords scoped to §7 Decision Statement only, full Locks + Reversal Plan |
 
-More examples (Decision SPEC, Fastpath SPEC, TASK.md
-decomposition) will land in v1.0.
+More examples (Fastpath SPEC, TASK.md decomposition) will land
+in v1.0.
 
 ## Verifying an example lints clean
 
