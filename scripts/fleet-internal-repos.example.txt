@@ -1,0 +1,8 @@
+# Internal-posture repos in your fleet (where agent-control content
+# is committed to the repo). One repo name per line, one repo per
+# studio-root subdirectory. Comments / blanks ignored.
+#
+# Example entries:
+# your-policy-repo
+# child-repo-1
+# child-repo-2

@@ -1,0 +1,7 @@
+# Local-only working-tree repos (not pushed to remotes at all).
+# Useful for asset / scratch / experimental directories that share
+# the fleet-baseline tooling but never sync to GitHub.
+#
+# Example entries:
+# scratch-workdir
+# local-assets

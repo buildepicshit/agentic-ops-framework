@@ -1,0 +1,7 @@
+# Public-OSS-posture repos in your fleet (where .agents/ and .claude/
+# content lays in the working tree only and is gitignored, never
+# reaching GitHub). One repo name per line.
+#
+# Example entries:
+# public-repo-1
+# public-repo-2
