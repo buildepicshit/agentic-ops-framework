@@ -288,7 +288,7 @@ Exit procedure:
 - [ ] AC-1: Decision Statement (§7) names exactly one chosen
   option.
 - [ ] AC-2: At least 2 candidates compared in §5 with all
-  required fields populated (4 candidates present).
+  needed fields populated (4 candidates present).
 - [ ] AC-3: Trade-off matrix (§6) is complete for all
   candidates and criteria.
 - [ ] AC-4: Locks (§9) and Reversal Plan (§10) are populated.
