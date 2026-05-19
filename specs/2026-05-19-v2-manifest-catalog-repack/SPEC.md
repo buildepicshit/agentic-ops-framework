@@ -321,7 +321,10 @@ Manifest validation rules (enforced by
 `scripts/validate-manifest.sh`):
 
 1. `spec_version` matches the schema version this SPEC
-   §6.1 defines (currently `2.0.0`).
+   §6.1 defines (currently `2.1.0` post the codex
+   remediation amendment at
+   `file://../../../agentic-installation-methodology/specs/2026-05-19-codex-remediation-amendments/SPEC.md`
+   §7.E + §7.F; was `2.0.0` at v2.0.0 release).
 2. `conformance_profile` is one of {`core`, `extension`,
    `real-integration`}
    (`file://../../../agentic-installation-methodology/research/primary-sources/symphony-spec.md`
@@ -542,10 +545,14 @@ explicitly out of scope here.
 
 ## 8. Schema Specification
 
-### 8.1 Manifest schema (formal)
+### 8.1 Manifest schema (formal — v2.1.0)
 
 The manifest is YAML. Top-level keys (REQUIRED unless
-noted):
+noted). Fields marked **(v2.1)** were added per the codex
+remediation amendment at
+`file://../../../agentic-installation-methodology/specs/2026-05-19-codex-remediation-amendments/SPEC.md`
+§7.E (finding 3.5) — manifest spec_version bumped from
+2.0.0 to 2.1.0.
 
 | Field | Type | Required | Notes |
 |---|---|---|---|
@@ -554,9 +561,13 @@ noted):
 | `conformance_profile` | enum | yes | `core` \| `extension` \| `real-integration` |
 | `generated_on` | string (ISO date) | yes | YYYY-MM-DD |
 | `generator` | string | yes | Source repo identifier |
+| `schema_uri` | string (URL) | yes **(v2.1)** | URL of the schema this manifest conforms to; lets adopters reference a versioned remote schema |
+| `source_commit` | string (git SHA) | yes **(v2.1)** | Commit SHA the bundle was generated from; binds the bundle to its source-of-truth state. MAY be empty at authoring time; release tooling populates at tag |
+| `source_tag` | string | OPTIONAL **(v2.1)** | Git tag if the bundle corresponds to a tagged release |
 | `intent` | object | yes | See §8.2 |
 | `facets` | object | yes | See §8.3 |
 | `resources` | object | OPTIONAL | See §8.4 |
+| `provenance` | object | OPTIONAL **(v2.1)** | See §8.6: SBOM ref + SLSA attestation refs |
 | `signature` | object | OPTIONAL | See §8.5 |
 
 ### 8.2 `intent` block
@@ -578,10 +589,26 @@ names: `architecture`, `deployment`, `behavior`,
 | Field | Type | Required |
 |---|---|---|
 | `path` | string (relative) | yes |
-| `primary` | string (relative-to-bundle) | yes — the entry file for the facet |
+| `primary` | string (relative-to-bundle) | yes — the entry file OR directory for the facet (if directory, MUST end in `/` and a `primary_index` field MUST name a file inside) |
+| `primary_index` | string (relative-to-bundle) | **conditionally REQUIRED (v2.1)** — required when `primary` is a directory path; names the file inside the directory that serves as the facet's named entry point |
+| `media_type` | string | RECOMMENDED **(v2.1)** | IANA / vendor-prefixed media type for the facet's primary content (e.g. `text/markdown`, `text/x.gherkin`, `application/vnd.framework.conformance-suite`) |
+| `digest` | string | RECOMMENDED **(v2.1)** | `algorithm:hex` form per OCI Descriptor convention; lets consumers verify by hash |
+| `size` | integer | OPTIONAL **(v2.1)** | Size in bytes |
+| `status` | enum | RECOMMENDED **(v2.1)** | `complete` \| `partial` \| `reserved` — lets the manifest advertise scaffold-status explicitly per facet (codex remediation finding 3.5 + 3.6) |
 
 Additional facets MAY appear; `validate-manifest.sh`
 allows extensions but warns.
+
+**v2.1 facet.primary directory rule (codex remediation
+finding 3.6)**: when `primary` is a directory path, the
+validator enforces that the directory exists AND that
+the file named by `primary_index` exists inside it AND
+(if `media_type` is set) at least one file in the
+directory matches the media type's file extension
+convention (`text/x.gherkin` → `*.feature`,
+`text/markdown` → `*.md`, etc.). The pre-v2.1 silent-
+allow on directory primaries is replaced with this
+explicit branch.
 
 ### 8.4 `resources` block
 
@@ -592,6 +619,10 @@ allows extensions but warns.
 | `skills` | object with `path` |
 | `conformance` | object with `path` |
 
+Resource records MAY also include `media_type`,
+`digest`, `size`, `status` fields (same semantics as
+§8.3 facet record).
+
 ### 8.5 `signature` block
 
 At v2.0 launch:
@@ -599,6 +630,17 @@ At v2.0 launch:
 - Signed fields (`cosign_signature`, `rekor_inclusion`,
   `signing_identity`) are reserved; populate at v2.x
   when Sigstore tooling is wired in.
+
+### 8.6 `provenance` block (v2.1)
+
+Added per codex remediation amendment §7.E (finding 3.5).
+Carries SBOM + supply-chain attestation references:
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `sbom_format` | enum | OPTIONAL | `cyclonedx` \| `spdx` (default `cyclonedx` per the corpus entry `cyclonedx-sbom.md` §3) |
+| `sbom_ref` | string (URI) | OPTIONAL | URL or OCI digest of the SBOM artefact |
+| `slsa_level` | string | OPTIONAL | SLSA build level (e.g. `slsa-v1.0/L3`); empty at v2.1 launch (corpus entry pending; see corpus §17 Q4 deferred candidates) |
 
 ## 9. Reference Algorithms
 
@@ -610,8 +652,8 @@ function validate_manifest():
   errors = []
 
   # 1. Schema version match.
-  if manifest.spec_version != "2.0.0":
-    errors.append("spec_version: expected 2.0.0, got " + manifest.spec_version)
+  if manifest.spec_version != "2.1.0":
+    errors.append("spec_version: expected 2.1.0, got " + manifest.spec_version)
 
   # 2. Conformance profile valid.
   if manifest.conformance_profile not in ["core", "extension", "real-integration"]:

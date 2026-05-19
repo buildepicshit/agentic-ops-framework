@@ -1,8 +1,11 @@
-spec_version: "2.0.0"
+spec_version: "2.1.0"
 bundle_version: "2.0.0"
 conformance_profile: "core"
 generated_on: "2026-05-19"
 generator: "agentic-ops-framework"
+schema_uri: "https://github.com/buildepicshit/agentic-ops-framework/blob/main/specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md#8-schema-specification"
+source_commit: ""              # populated by release tooling at tag time
+source_tag: "v2.0.0"
 
 intent:
   product_name: "agentic-ops-framework"
@@ -25,37 +28,66 @@ facets:
   architecture:
     path: "architecture/"
     primary: "architecture/CONTEXT.md"
+    media_type: "text/markdown"
+    status: "complete"
   deployment:
     path: "deployment/"
     primary: "deployment/install.md"
+    media_type: "text/markdown"
+    status: "complete"
   behavior:
     path: "behavior/"
     primary: "behavior/features/"
+    primary_index: "behavior/features/lint-citation-grammar.feature"
+    media_type: "text/x.gherkin"
+    status: "partial"            # 2 of N features authored at v2.0
   customization:
     path: "customization/"
     primary: "customization/contract.md"
+    media_type: "text/markdown"
+    status: "complete"
   decisions:
     path: "decisions/"
     primary: "decisions/INDEX.md"
+    media_type: "text/markdown"
+    status: "partial"            # INDEX only; per-decision ADRs reserved for v2.x
   quality:
     path: "quality/"
     primary: "quality/requirements.md"
+    media_type: "text/markdown"
+    status: "complete"
   operations:
     path: "operations/"
     primary: "operations/failures.md"
+    media_type: "text/markdown"
+    status: "complete"
   non-goals:
     path: "non-goals/"
     primary: "non-goals/INDEX.md"
+    media_type: "text/markdown"
+    status: "complete"
 
 resources:
   schema:
     path: "schema/SPEC.schema.md"
+    media_type: "text/markdown"
   templates:
     path: "templates/"
+    media_type: "text/markdown"
   skills:
     path: "skills/"
+    media_type: "text/markdown"
   conformance:
     path: "conformance/"
+    media_type: "application/vnd.framework.conformance-suite"
+    status: "reserved"           # conformance suite reserved for v2.x
+
+provenance:
+  sbom_format: "cyclonedx"       # per corpus cyclonedx-sbom.md §3
+  sbom_ref: ""                   # populated by release tooling
+  slsa_level: ""                 # reserved; SLSA attestation lands when toolchain wired
 
 signature:
   status: "unsigned"
+  # When signed: cosign signature + Rekor inclusion proof per
+  # https://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/sigstore-cosign.md §3

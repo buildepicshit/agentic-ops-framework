@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 BUNDLE_DIR="$REPO_ROOT/spec-bundle"
 MANIFEST="$BUNDLE_DIR/manifest.yaml"
 
-EXPECTED_SPEC_VERSION="2.0.0"
+EXPECTED_SPEC_VERSION="2.1.0"
 EXPECTED_PRODUCT_NAME="agentic-ops-framework"
 VALID_PROFILES="core extension real-integration"
 
