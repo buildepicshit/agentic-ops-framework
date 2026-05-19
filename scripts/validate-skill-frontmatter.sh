@@ -3,8 +3,8 @@
 # across all skill directories present in the cwd repo.
 #
 # Scans whichever of these exist:
-#   skills/         (framework source)
-#   .claude/skills/ (Claude Code mirror)
+#   spec-bundle/skills/  (framework source as of v2.0; was skills/ in v1.x)
+#   .claude/skills/      (Claude Code mirror, if present)
 #
 # Catches the most common breakage: unquoted scalar values containing
 # `: ` (colon-space), which strict YAML parsers reject.
@@ -45,7 +45,7 @@ scan_dir() {
     done < <(find "$dir" -name SKILL.md -type f -print0)
 }
 
-scan_dir skills/
+scan_dir spec-bundle/skills/
 scan_dir .claude/skills
 
 if [ "$fail" = "0" ]; then

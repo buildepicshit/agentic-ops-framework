@@ -1,0 +1,61 @@
+spec_version: "2.0.0"
+bundle_version: "2.0.0"
+conformance_profile: "core"
+generated_on: "2026-05-19"
+generator: "agentic-ops-framework"
+
+intent:
+  product_name: "agentic-ops-framework"
+  product_purpose: |
+    A framework for operating engineering work with coding
+    agents under spec-first discipline: typed IDEA → SPEC
+    artefacts with citation grammar, RFC 2119 scoping rules,
+    a per-type quality gate, owner-only authority transitions,
+    and a hermetic hook test harness. The framework eats its
+    own dog food and is offered as honest experience from one
+    studio's working internal practice.
+  developer_authority:
+    - role: "framework maintainer"
+      identity: "HasNoBeef <github:HasNoBeef>"
+  installer_authority:
+    - role: "user-with-agent"
+      capabilities_floor: "any-reasonably-capable-coding-agent"
+
+facets:
+  architecture:
+    path: "architecture/"
+    primary: "architecture/CONTEXT.md"
+  deployment:
+    path: "deployment/"
+    primary: "deployment/install.md"
+  behavior:
+    path: "behavior/"
+    primary: "behavior/features/"
+  customization:
+    path: "customization/"
+    primary: "customization/contract.md"
+  decisions:
+    path: "decisions/"
+    primary: "decisions/INDEX.md"
+  quality:
+    path: "quality/"
+    primary: "quality/requirements.md"
+  operations:
+    path: "operations/"
+    primary: "operations/failures.md"
+  non-goals:
+    path: "non-goals/"
+    primary: "non-goals/INDEX.md"
+
+resources:
+  schema:
+    path: "schema/SPEC.schema.md"
+  templates:
+    path: "templates/"
+  skills:
+    path: "skills/"
+  conformance:
+    path: "conformance/"
+
+signature:
+  status: "unsigned"

@@ -51,6 +51,14 @@ jobs:
       - name: Run hook tests
         run: bash tests/hooks/run-tests.sh
 
+  validate-manifest:
+    name: validate spec-bundle manifest (v2.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest schema + facet bijection
+        run: bash scripts/validate-manifest.sh
+
   preflight-self-check:
     name: preflight runs clean on the framework
     runs-on: ubuntu-latest

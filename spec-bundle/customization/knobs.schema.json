@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/buildepicshit/agentic-ops-framework/spec-bundle/customization/knobs.schema.json",
+  "title": "agentic-ops-framework adopter customization knobs",
+  "description": "JSON Schema defining the customization knobs the framework defers to the adopter. Authority: file://../../specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md §6.2.4 and file://contract.md.",
+  "type": "object",
+  "properties": {
+    "skill_catalog_scope": {
+      "description": "K-1 — which skills the adopter activates.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "repo-orientation",
+          "spec-authoring",
+          "spec-review",
+          "fast-path",
+          "approved-spec-decomposition",
+          "implementation-execution",
+          "verification",
+          "code-review",
+          "release-pr",
+          "spec-evidence-governance",
+          "tdd",
+          "diagnosis",
+          "owner-led-parallel-worktrees",
+          "autonomous-issue-dispatch",
+          "spec-driven-development",
+          "agents-md-improver",
+          "agent-feedback",
+          "caveman",
+          "cross-repo-policy-enforcement",
+          "cross-repo-informational-channel"
+        ]
+      },
+      "contains": {
+        "anyOf": [
+          { "const": "spec-authoring" },
+          { "const": "spec-review" }
+        ]
+      },
+      "default": [
+        "repo-orientation",
+        "spec-authoring",
+        "spec-review",
+        "fast-path",
+        "implementation-execution",
+        "verification",
+        "spec-evidence-governance"
+      ]
+    },
+    "hook_activation_set": {
+      "description": "K-2 — which hooks the adopter enables.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "block-ai-attribution",
+          "block-edit-on-main",
+          "block-git-add-all",
+          "block-push-to-main",
+          "block-verify-bypass",
+          "session-start-context",
+          "verify-reminder"
+        ]
+      },
+      "default": [
+        "block-ai-attribution",
+        "block-edit-on-main",
+        "block-git-add-all",
+        "block-push-to-main",
+        "block-verify-bypass",
+        "session-start-context",
+        "verify-reminder"
+      ]
+    },
+    "branch_policy_default": {
+      "description": "K-3 — per-SPEC branch policy default.",
+      "type": "string",
+      "enum": ["worktree-preferred", "main-direct"],
+      "default": "worktree-preferred"
+    },
+    "ci_job_set": {
+      "description": "K-4 — which CI jobs the adopter runs.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "lint-spec",
+          "validate-skill-frontmatter",
+          "test-hooks",
+          "validate-manifest",
+          "preflight-self-check"
+        ]
+      },
+      "contains": { "const": "lint-spec" },
+      "default": [
+        "lint-spec",
+        "validate-skill-frontmatter",
+        "test-hooks",
+        "validate-manifest"
+      ]
+    },
+    "tracker_integration": {
+      "description": "K-5 — issue tracker for autonomous-dispatch slices (optional).",
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["linear", "github-issues", "gitlab-issues", "jira", "none"]
+        },
+        "endpoint": { "type": "string" }
+      }
+    },
+    "verification_gate_sensitivity": {
+      "description": "K-6 — lint exit-2 (advisory) CI treatment.",
+      "type": "object",
+      "properties": {
+        "lint_exit_2_treatment": {
+          "type": "string",
+          "enum": ["advisory", "failure"],
+          "default": "advisory"
+        },
+        "contract_spec_exit_2_treatment": {
+          "type": "string",
+          "enum": ["failure"],
+          "default": "failure"
+        }
+      }
+    },
+    "cross_family_review_enforcement": {
+      "description": "K-7 — cross-family review posture.",
+      "type": "object",
+      "properties": {
+        "default_review_lane": {
+          "type": "string",
+          "enum": ["external-cross-family", "same-family-proxy"],
+          "default": "external-cross-family"
+        },
+        "schema_or_lifecycle_changes_require": {
+          "type": "string",
+          "enum": ["external-cross-family"],
+          "default": "external-cross-family"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

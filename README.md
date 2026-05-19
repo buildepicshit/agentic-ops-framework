@@ -10,48 +10,91 @@ execute → verify → close lifecycle.
 Extracted from one studio's working internal practice and sanitized for
 adoption. We eat our own dog food. Your mileage may vary.
 
-## What's here
+**v2.0 status**: the framework has been reorganized into a
+manifest+catalog packaging shape that exemplifies the methodology
+the sibling repo
+[`agentic-installation-methodology`](https://github.com/buildepicshit/agentic-installation-methodology)
+publishes. v1.x consumers: see the **Migration from v1.x** section
+below for the new path layout.
+
+## What's here (v2.0)
+
+Top-level (OSS-conventional + repo plumbing):
 
 | Path | What |
 |---|---|
-| `schema/SPEC.schema.md` | Shared schema: front-matter, citation grammar, RFC 2119 conventions, status state machine |
-| `templates/` | IDEA + 4 SPEC type templates (task / contract / decision / fastpath) + TASK template for decomposition |
-| `scripts/lint-spec.sh` | Per-type quality-gate lint over IDEA / SPEC artefacts |
-| `scripts/validate-skill-frontmatter.sh` | Skill frontmatter validator |
-| `scripts/fleet-sync.sh` | Manifest-driven multi-repo propagation (v0.5) — copies fleet baseline from a source policy repo into N target repos |
-| `scripts/audit-entry-docs.sh` | Audit AGENTS.md / CLAUDE.md / GEMINI.md / WORKFLOW.md presence + canonical-pattern adherence across all fleet repos (v0.5.1) |
-| `scripts/preflight.mjs` | Workspace-layout preflight gate — MCP config status, codex CLI presence, fleet-content presence, unmanaged top-level entries (v0.5.2) |
-| `scripts/preflight-config.example.json` | Example preflight topology + allowlist config; rename to drop `.example.` to activate |
-| `scripts/fleet-*.example.txt` | Example manifest files (skills, slash-commands, hooks, hook fixtures, OSS-posture gitignore entries, internal-repo list, OSS-repo list, local-only repo list) |
-| `skills/` | Twenty skills covering the full lifecycle, multi-repo patterns, and meta-skills: `repo-orientation`, `spec-authoring`, `spec-review`, `fast-path`, `approved-spec-decomposition`, `implementation-execution`, `verification`, `code-review`, `release-pr`, `spec-evidence-governance`, `tdd`, `diagnosis`, `owner-led-parallel-worktrees`, `autonomous-issue-dispatch`, `spec-driven-development`, `agents-md-improver`, `agent-feedback`, `caveman`, `cross-repo-policy-enforcement`, `cross-repo-informational-channel` |
-| `hooks/` | Seven Claude Code hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |
-| `workflow/UNIVERSAL.md` | Universal-mode WORKFLOW body shared across all agent contexts |
-| `workpads/` | Per-repo append-only workpad templates: `AGENT_FEEDBACK`, `SESSION_JOURNAL`, `AGENT_INBOX` |
-| `scripts/audit-fleet-compliance.sh` | Cross-repo policy directive auditor (v1.1) — walks `agents/fleet-directives/*.md` and runs each directive's compliance check against named target repos |
-| `scripts/send-fleet-message.sh` | Cross-repo informational-channel helper (v1.1) — appends structured entries to a target repo's `AGENT_INBOX.md` |
-| `OPERATING_MODEL.md` | Operating model: lifecycle, types, citation discipline, memory boundary, safety invariants |
-| `tests/hooks/` | Hook test harness (33 cases) verifying every hook's block-path, allow-path, and false-positive behavior |
-| `.github/workflows/ci.yml` | CI gates lint, skill-frontmatter, hook tests, and preflight on every push |
-| `specs/` | Internal SPECs tracking the framework's own evolution (the framework dogfoods itself) |
-| `examples/` | Worked IDEA → SPEC pairs for all four SPEC types + a TASK.md decomposition |
-| `CHANGELOG.md` | Release history |
+| `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` | Standard OSS scaffolding |
+| `AGENTS.md`, `CLAUDE.md` | Entry docs for AGENTS-aware tools + Claude Code |
+| `OPERATING_MODEL.md` | The 13-phase lifecycle in detail |
+| `CHANGELOG.md` | Release history (v0.1 → v2.0) |
+| `scripts/` | Tooling: `lint-spec.sh`, `validate-skill-frontmatter.sh`, `validate-manifest.sh` (v2.0), `fleet-sync.sh`, `audit-entry-docs.sh`, `audit-fleet-compliance.sh`, `send-fleet-message.sh`, `preflight.mjs` |
+| `hooks/` | Seven PreToolUse hooks: `block-edit-on-main`, `block-push-to-main`, `block-git-add-all`, `block-verify-bypass`, `block-ai-attribution`, `verify-reminder`, `session-start-context` |
+| `tests/hooks/` | 33-case hermetic hook test harness |
+| `examples/` | Worked IDEA + SPEC pairs across all four SPEC types + a TASK decomposition |
+| `specs/` | The framework's own internal SPEC ledger (dogfooding) |
+| `.github/workflows/ci.yml` | Five CI jobs |
+
+The manifest+catalog bundle (the methodology artefact):
+
+| Path | What |
+|---|---|
+| `spec-bundle/manifest.yaml` | Front-door manifest naming every facet + resource |
+| `spec-bundle/architecture/` | arc42 §3 Context + arc42 §4 Solution Strategy + (future) Structurizr DSL diagrams |
+| `spec-bundle/deployment/` | Install procedure + runtime requirements (12-factor Factor II framing) |
+| `spec-bundle/behavior/features/` | Gherkin scenarios for lint + hook behaviour |
+| `spec-bundle/customization/` | Deferral contract (`contract.md`) + JSON Schema knob enumeration (`knobs.schema.json`) |
+| `spec-bundle/decisions/` | ADR-style decision index (Nygard template) |
+| `spec-bundle/quality/` | Quality scenarios + 12-factor overlay |
+| `spec-bundle/operations/` | Failure model (Symphony §14 pattern) + observability (Symphony §13) + safety invariants (Symphony §9.5) + universal workflow body |
+| `spec-bundle/non-goals/` | Per-facet negative space (novel facet per the methodology) |
+| `spec-bundle/schema/SPEC.schema.md` | The schema every IDEA/SPEC/TASK conforms to |
+| `spec-bundle/templates/` | IDEA + 4 SPEC type templates + TASK template + workpad templates |
+| `spec-bundle/skills/` | Twenty skills covering the full lifecycle + multi-repo patterns + meta-skills |
+| `spec-bundle/conformance/` | (Reserved for v2.x) Executable conformance suite |
+
+## Migration from v1.x
+
+v2.0 is a **breaking** layout change. Every file under the
+old top-level `schema/`, `templates/`, `skills/`, `workflow/`,
+and `workpads/` has moved under `spec-bundle/`:
+
+| v1.x path | v2.0 path |
+|---|---|
+| `schema/SPEC.schema.md` | `spec-bundle/schema/SPEC.schema.md` |
+| `templates/*.template.md` | `spec-bundle/templates/*.template.md` |
+| `skills/<name>/` | `spec-bundle/skills/<name>/` |
+| `workflow/UNIVERSAL.md` | `spec-bundle/operations/workflow-universal.md` |
+| `workpads/*.template.md` | `spec-bundle/templates/workpads/*.template.md` |
+
+Top-level scripts (`scripts/`), hooks (`hooks/`), tests
+(`tests/`), examples (`examples/`), specs (`specs/`), and
+all OSS-conventional files (LICENSE, README, CONTRIBUTING,
+CHANGELOG, etc.) are unchanged.
+
+v1.1 remains tagged at `v1.1` — consumers pinning v1.1
+continue to work; consumers pinning `main` need to update
+their paths. The CHANGELOG v2.0 entry documents the full
+move set.
 
 ## Status
 
-**v0.5** — adds `fleet-sync.sh` and the manifest-driven
-propagation pattern for multi-repo studios. The script ships
-its topology in plain-text manifests (one entry per line);
-edit the manifest to change what propagates without touching
-the script. Single-repo studios can ignore `fleet-sync.sh`
-entirely.
+**v2.0** — manifest+catalog repack of v1.1 into the
+shape the sibling
+[`agentic-installation-methodology`](https://github.com/buildepicshit/agentic-installation-methodology)
+methodology advocates. Eight per-facet sub-specs with
+primary-file contracts, a front-door
+`spec-bundle/manifest.yaml`, and a mechanical
+`scripts/validate-manifest.sh` gate. CI gains a fifth job
+for manifest validation.
 
-v0.1 shipped the "publishable with renaming only" content
-(schema + templates + lint + hooks + 6 procedure-only skills +
-universal workflow body + workpad templates + operating model).
+v1.1 shipped six new skills (catalog 14 → 20), two
+cross-repo abstract patterns (`cross-repo-policy-enforcement`,
+`cross-repo-informational-channel`), and contributor docs
+(CONTRIBUTING.md + CODE_OF_CONDUCT.md).
 
-**v1.0** (next) will add the rewritten operating-model
-documentation, additional skills, and synthetic worked-example
-SPECs.
+v1.0 was the first git-tagged release: end-to-end
+adoptable (schema + templates + lint + hooks + 14 skills +
+worked examples + operating model + CI).
 
 ## Design posture
 
@@ -60,7 +103,8 @@ SPECs.
   staging, verify bypass, AI attribution in commits).
 - **Citation grammar separates input from evidence**: agent memory
   and training are inputs to reasoning; only `file://` / `cmd://` /
-  `url://` / `decision-authority://` cites are evidence in artefacts.
+  `url://` / `decision-authority://` / `owner://` / `judgment://`
+  cites are evidence in artefacts.
 - **RFC 2119 normative language** carries force in the sections the
   templates designate; other sections are descriptive.
 - **Owner-only state transitions** (`approved`, `decomposed`,
@@ -69,54 +113,50 @@ SPECs.
 - **Cross-family review** as a first-class merge gate for decomposed
   work — different model family from the implementer reviews the
   diff before it lands.
+- **Manifest+catalog packaging** (v2.0): the front-door manifest
+  enumerates eight per-facet sub-specs; agents consuming the
+  framework can fetch the facet they need rather than the whole
+  tree.
 
-## Multi-repo propagation (v0.5)
+## Multi-repo propagation
 
 If you run a multi-repo studio where one policy repo owns the
 canonical fleet content and N child repos consume it, the
 `scripts/fleet-sync.sh` script propagates the baseline. The
-topology lives in plain-text manifests next to the script:
+topology lives in plain-text manifests (`fleet-files.txt`,
+`fleet-skills.txt`, `fleet-internal-repos.txt`, etc.). The
+repo ships these as `*.example.txt`; adopters rename them
+and fill them in. Source path is auto-derived from script
+location; override with `FLEET_SOURCE`.
 
-| Manifest | What it lists |
-|---|---|
-| `fleet-files.txt` | Paths under `agents/` that propagate to each target's `.agents/` |
-| `fleet-skills.txt` | Skill directory names (mirrored to `.agents/skills/` + `.claude/skills/`) |
-| `fleet-commands.txt` | Claude Code slash-command basenames |
-| `fleet-hooks.txt` | Claude Code hook script filenames |
-| `fleet-hook-fixtures.txt` | Hook test fixture filenames |
-| `fleet-oss-gitignore.txt` | `.gitignore` entries to inject for `posture=oss` targets |
-| `fleet-internal-repos.txt` | Internal-posture repo names (agent-control content committed) |
-| `fleet-oss-repos.txt` | Public-OSS-posture repo names (agent-control content gitignored) |
-| `fleet-local-only-repos.txt` | Local-only working-tree repo names (no remote) |
+The framework also ships two cross-repo abstract patterns:
 
-The repo ships these as `*.example.txt` so adopters rename
-them (drop `.example.`) and fill them in. Source path is
-auto-derived from script location; override with `FLEET_SOURCE`.
+- `cross-repo-policy-enforcement` — fleet-wide policy
+  directives with shell-block compliance checks
+  (`scripts/audit-fleet-compliance.sh` walks the directives).
+- `cross-repo-informational-channel` — per-repo
+  `AGENT_INBOX.md` for structured handoffs +
+  fleet-update notices (`scripts/send-fleet-message.sh`).
 
-Two postures:
-- `internal` — full content committed to the target repo;
-  `.agents/` and `.claude/` are tracked.
-- `oss` — content lays into the target's working tree only;
-  `.agents/`, `.claude/`, and the workpad files are appended to
-  `.gitignore`. For public OSS repos that adopt the framework
-  without leaking agent-control content to GitHub.
-
-Single-repo studios don't need this. The schema, templates,
-lint, hooks, skills, and workflow body work fine in one repo
-without propagation.
+Single-repo studios don't need either pattern.
 
 ## What this is not
 
 - Not a CLI runtime. The framework is schema + templates + lint +
   hooks + skills. Wire it into your own agent harness (Claude Code,
-  Cursor, your custom dispatcher); the framework doesn't dictate
-  the harness.
+  Cursor, Codex, Aider, your custom dispatcher); the framework
+  doesn't dictate the harness.
 - Not an opinion on which models to use. The framework specifies
   *that* cross-family review happens; it doesn't specify *which*
   families.
-- Not a finished product. The lint script handles common cases; the
-  hooks cover the obvious foot-guns; the skill set is six of the
-  twenty-something a complete studio runs. v1.0 fills in the rest.
+- Not a finished product. The lint script handles the common cases;
+  the hooks cover the obvious foot-guns; the skill catalog at 20
+  covers the studio's full lifecycle but adopters MAY add their own.
+- Not the methodology itself. The methodology — agentic installation
+  — is published separately at
+  [`agentic-installation-methodology`](https://github.com/buildepicshit/agentic-installation-methodology).
+  This framework is the *worked case study* the methodology
+  references.
 
 ## Licence
 

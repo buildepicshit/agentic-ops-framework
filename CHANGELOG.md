@@ -5,6 +5,119 @@ All notable changes to this project. Format loosely follows
 date-stamped releases. Versions before v1.0 were README-only
 milestones; v1.0 is the first git-tagged release.
 
+## v2.0 — 2026-05-19
+
+**Breaking layout change**: the framework is repacked into
+a manifest+catalog packaging shape that exemplifies the
+methodology the sibling repo
+[`agentic-installation-methodology`](https://github.com/buildepicshit/agentic-installation-methodology)
+publishes. v1.1 remains tagged at `v1.1`; consumers pinning
+that tag are unaffected. Consumers pinning `main` MUST
+update their paths per the migration index below.
+
+### Added
+
+- **`spec-bundle/manifest.yaml`** — front-door manifest
+  per the methodology's manifest+catalog packaging
+  recommendation. Carries `spec_version`,
+  `bundle_version`, `conformance_profile`, `intent` block
+  (product name, purpose, developer + installer
+  authority), eight `facets` entries, and a reserved
+  `signature` field for v2.x Sigstore signing.
+- **`scripts/validate-manifest.sh`** — mechanical
+  completeness gate: validates schema version,
+  conformance profile, intent block, facet ↔ filesystem
+  bijection, and primary-file presence per facet. Exits
+  0 iff the bundle is structurally complete.
+- **Eight per-facet sub-spec directories** under
+  `spec-bundle/`:
+  - `architecture/` — arc42 §3 Context (`CONTEXT.md`) +
+    arc42 §4 Solution Strategy (`solution-strategy.md`).
+    Reserved for Structurizr DSL diagrams in v2.x.
+  - `deployment/` — install procedure (`install.md`) +
+    runtime requirements (`requirements.md`, 12-factor
+    Factor II framing).
+  - `behavior/features/` — Gherkin scenarios for lint
+    citation grammar and the AI-attribution block hook.
+    Reserved for additional features in v2.x.
+  - `customization/` — deferral contract (`contract.md`)
+    naming K-1 through K-7 adopter knobs + JSON Schema
+    enumeration (`knobs.schema.json`).
+  - `decisions/` — ADR-style decision index
+    (`INDEX.md`) catalogues eight foundational
+    framework decisions. Per-decision artefacts at
+    `ADR-NNN-<slug>.md` are reserved for v2.x.
+  - `quality/` — quality scenarios (`requirements.md`,
+    six Q-1 through Q-6 quality goals) + 12-factor
+    overlay (`12-factor-overlay.md`).
+  - `operations/` — failure model (`failures.md`,
+    seven F-1 through F-7 failure classes) +
+    observability (`observability.md`, three-tier
+    Symphony §13 pattern) + safety invariants
+    (`safety-invariants.md`, SI-1 through SI-12).
+  - `non-goals/` — per-facet negative space (`INDEX.md`,
+    novel facet per the methodology's research §4.2).
+- **`AGENTS.md`** at top-level — new entry doc for
+  AGENTS-aware tools per `https://agents.md`. Imports
+  via `CLAUDE.md`'s `@AGENTS.md` directive.
+- **CI: `validate-manifest` job** in the workflow.
+
+### Changed
+
+- **Directory moves** (the v1.x → v2.0 migration index):
+  - `schema/SPEC.schema.md` → `spec-bundle/schema/SPEC.schema.md`
+  - `templates/*.template.md` → `spec-bundle/templates/*.template.md`
+  - `skills/<name>/` → `spec-bundle/skills/<name>/`
+  - `workflow/UNIVERSAL.md` → `spec-bundle/operations/workflow-universal.md`
+  - `workpads/*.template.md` → `spec-bundle/templates/workpads/*.template.md`
+  - `docs/` → removed (was empty)
+- `scripts/validate-skill-frontmatter.sh` updated to
+  scan `spec-bundle/skills/` (was `skills/`).
+- `README.md` rewritten for v2.0 with migration table.
+- `CLAUDE.md` rewritten to reference v2.0 layout with a
+  v1.x cheat-sheet.
+
+### Authority
+
+This repack lands under the parent Decision SPEC at
+`bes-fleet-policy/specs/2026-05-18-agentic-installation-methodology/SPEC.md`
+§7 (Hybrid longread + SPEC bundle shape, paired
+Product A v2.0 + Product B v1.0 release) and the slice 2
+Contract SPEC at
+`specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md`.
+
+Every methodology primitive adopted in v2.0 is grounded
+in a primary-source corpus entry in the sibling repo at
+`research/primary-sources/<slug>.md`. The corpus is the
+authoritative evidence base; agent memory is not citable
+for any methodology claim in v2.0 artefacts.
+
+### Reserved for v2.x
+
+- Per-decision ADR artefacts at
+  `spec-bundle/decisions/ADR-NNN-<slug>.md` (currently
+  just the INDEX is populated).
+- Structurizr DSL diagrams at
+  `spec-bundle/architecture/*.dsl`.
+- Executable conformance suite at
+  `spec-bundle/conformance/`.
+- Sigstore signing of the bundle (`signature.status:
+  unsigned` at v2.0; populates when cosign + Rekor
+  tooling is wired).
+- Reference customization profiles at
+  `spec-bundle/customization/profiles/*.yaml`.
+
+### Posture
+
+The framework eats its own dog food: by adopting the
+methodology's recommended packaging on itself, the v2.0
+release becomes the worked case study the sibling
+methodology repo references. Honest disclosure: v2.0
+ships scaffold-grade content in several facets (the
+`spec-bundle/conformance/` is empty; per-decision ADRs
+are not yet authored beyond the INDEX). The structural
+contract is sound; richer content lands in v2.x slices.
+
 ## v1.1 — 2026-05-18
 
 Catalog expansion, cross-repo abstract patterns, and contributor
