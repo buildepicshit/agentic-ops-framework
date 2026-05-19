@@ -1,7 +1,7 @@
 # Cascade by id-citation (non-propagating SPECs)
 
 Extracted from
-`file://skills/spec-driven-development/SKILL.md` per the
+`file://spec-bundle/skills/spec-driven-development/SKILL.md` per the
 references/ progressive-disclosure convention (SE1 capture in
 `judgment://agent-synthesis`).
 

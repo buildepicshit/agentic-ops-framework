@@ -12,8 +12,8 @@ nothing. This journal is read in Step 0 orientation by ALL agents
 (dispatched or interactive) and appended on session end.
 
 **Authority:**
-`file://workflow/UNIVERSAL.md` "Section 1 — Universal";
-`file://skills/repo-orientation/SKILL.md` Step 2.
+`file://spec-bundle/operations/workflow-universal.md` "Section 1 — Universal";
+`file://spec-bundle/skills/repo-orientation/SKILL.md` Step 2.
 
 ## How to use
 

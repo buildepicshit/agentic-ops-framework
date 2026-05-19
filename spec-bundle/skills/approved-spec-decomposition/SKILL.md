@@ -21,7 +21,7 @@ slice and the 1:1 binding to tracker issues.
   Execution Plan (Task SPEC) or §11 / §14 / §15 Implementation
   Checklist (Contract SPEC) that names ≥ 2 distinct slices, OR
 - The owner has directed decomposition for parallel execution per
-  `file://agents/MODEL_ROUTING.md` "Routing Matrix" (multi-agent
+  `<adopter-policy-repo>/agents/MODEL_ROUTING.md` (legacy bes-fleet-policy location; not present in agentic-ops-framework v2.0 standalone — adopters provide their own model-routing reference) "Routing Matrix" (multi-agent
   coding row).
 
 Skip when:
@@ -38,7 +38,7 @@ REFUSE to proceed unless:
 
 1. `<spec_path>` exists with parseable front-matter.
 2. `status: approved` (set by owner per
-   `file://agents/specs/SPEC.schema.md` §1.3).
+   `file://spec-bundle/schema/SPEC.schema.md` §1.3).
 3. Acceptance commands present, OR explicit explanation of empty
    list in §12 Acceptance Criteria.
 4. Open Questions resolved.
@@ -53,11 +53,11 @@ file/line citation. Do NOT emit TASK.md files.
 ## Procedure
 
 1. Read the approved SPEC end-to-end.
-2. Read `file://agents/MODEL_ROUTING.md` "Routing Matrix" to map task
+2. Read `<adopter-policy-repo>/agents/MODEL_ROUTING.md` (legacy bes-fleet-policy location; not present in agentic-ops-framework v2.0 standalone — adopters provide their own model-routing reference) "Routing Matrix" to map task
    classes to model lanes.
 3. Read the parent SPEC's §11 Execution Plan (Task) or §11/§14/§15
    (Contract). Each slice in the plan becomes one TASK.md.
-4. For each slice, copy `file://agents/specs/TASK.template.md` to
+4. For each slice, copy `file://spec-bundle/templates/TASK.template.md` to
    `specs/<parent_spec_id>/tasks/T-NN-<slug>.md` and fill in:
    - `id` — `T-NN-<slug>` matching the file name.
    - `parent_spec` — the SPEC's id.
@@ -116,7 +116,7 @@ file/line citation. Do NOT emit TASK.md files.
    `approved → decomposed`. The skill MUST NOT set the status; only
    the owner does (extends the existing owner-only `approved` /
    `closed` rule from
-   `file://agents/specs/SPEC.schema.md` §1.3).
+   `file://spec-bundle/schema/SPEC.schema.md` §1.3).
 10. After owner approval, agents may dispatch tasks. Each TASK.md's
     tracker issue is created (manually or via tooling); the task's
     `tracker_issue` field is filled. the dispatcher picks up the issue and

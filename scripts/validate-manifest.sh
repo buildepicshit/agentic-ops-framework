@@ -137,29 +137,77 @@ for d in "${fs_dirs[@]}"; do
 done
 
 # Check each facet's primary file exists.
-# Parse primary field per facet — look for two-space-indented "primary:".
+# Parse primary + primary_index + media_type per facet per the v2.1
+# schema (codex Round-2 BLOCKER finding closed: previously the script
+# accepted directory primaries silently without verifying primary_index
+# or media-type-extension conventions; this branch now enforces the
+# v2.1 binding).
 current_facet=""
+declare -A facet_primary
+declare -A facet_primary_index
+declare -A facet_media_type
 while IFS= read -r line; do
     if [[ "$line" =~ ^[[:space:]]{2}([a-z_-]+):[[:space:]]*$ ]]; then
         current_facet="${BASH_REMATCH[1]}"
     elif [[ "$line" =~ ^[[:space:]]{4}primary:[[:space:]]*\"?([^\"]*)\"?$ ]] && [ -n "$current_facet" ]; then
         primary="${BASH_REMATCH[1]}"
-        # Strip trailing quote if any.
         primary="${primary%\"}"
-        # Primary may be a file or a directory (e.g., behavior/features/).
-        if [[ "$primary" == */ ]]; then
-            if [ ! -d "$BUNDLE_DIR/$primary" ]; then
-                err "facet '$current_facet' primary directory missing: $primary"
-            fi
-        else
-            if [ ! -f "$BUNDLE_DIR/$primary" ]; then
-                err "facet '$current_facet' primary file missing: $primary"
-            fi
-        fi
+        facet_primary["$current_facet"]="$primary"
+    elif [[ "$line" =~ ^[[:space:]]{4}primary_index:[[:space:]]*\"?([^\"]*)\"?$ ]] && [ -n "$current_facet" ]; then
+        pi="${BASH_REMATCH[1]}"
+        pi="${pi%\"}"
+        facet_primary_index["$current_facet"]="$pi"
+    elif [[ "$line" =~ ^[[:space:]]{4}media_type:[[:space:]]*\"?([^\"]*)\"?$ ]] && [ -n "$current_facet" ]; then
+        mt="${BASH_REMATCH[1]}"
+        mt="${mt%\"}"
+        facet_media_type["$current_facet"]="$mt"
     elif [[ "$line" =~ ^[a-z_-] ]]; then
         current_facet=""
     fi
 done < "$MANIFEST"
+
+# Media-type → file-extension expectations (v2.1 schema §8.3).
+media_type_extension() {
+    case "$1" in
+        text/markdown) printf '.md' ;;
+        text/x.gherkin) printf '.feature' ;;
+        application/vnd.framework.conformance-suite) printf '' ;;  # any
+        *) printf '' ;;
+    esac
+}
+
+for facet in "${!facet_primary[@]}"; do
+    primary="${facet_primary[$facet]}"
+    if [[ "$primary" == */ ]]; then
+        # Directory primary — v2.1 requires primary_index.
+        if [ ! -d "$BUNDLE_DIR/$primary" ]; then
+            err "facet '$facet' primary directory missing: $primary"
+            continue
+        fi
+        pi="${facet_primary_index[$facet]:-}"
+        if [ -z "$pi" ]; then
+            err "facet '$facet' primary is directory ($primary) but primary_index is missing (v2.1 schema §8.3 REQUIRED for directory primaries)"
+            continue
+        fi
+        if [ ! -f "$BUNDLE_DIR/$pi" ]; then
+            err "facet '$facet' primary_index file missing: $pi"
+        fi
+        # Media-type extension conformance (v2.1 §8.3).
+        mt="${facet_media_type[$facet]:-}"
+        ext="$(media_type_extension "$mt")"
+        if [ -n "$ext" ]; then
+            n_matching=$(find "$BUNDLE_DIR/$primary" -maxdepth 1 -name "*$ext" -type f 2>/dev/null | wc -l)
+            if [ "$n_matching" -eq 0 ]; then
+                err "facet '$facet' has media_type '$mt' (expects *$ext) but no matching files in $primary"
+            fi
+        fi
+    else
+        # File primary.
+        if [ ! -f "$BUNDLE_DIR/$primary" ]; then
+            err "facet '$facet' primary file missing: $primary"
+        fi
+    fi
+done
 
 if [ ${#errors[@]} -gt 0 ]; then
     printf 'validate-manifest: %d issue(s) found:\n' "${#errors[@]}" >&2

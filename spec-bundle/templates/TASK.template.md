@@ -67,7 +67,7 @@ Front-matter schema:
 
 Citation discipline applies: every factual claim in §3 (Scope), §4
 (Read context), and §6 (Evidence) MUST carry a citation prefix per
-`file://templates/SPEC.schema.md` §2.
+`file://spec-bundle/schema/SPEC.schema.md` §2.
 -->
 
 # TASK: [Slice Title]
@@ -106,7 +106,7 @@ Files this worker MUST read before editing:
 
 Explicit non-goals for this slice. Surface as backlog tracker issues
 if discovered during execution per
-`file://workflow/UNIVERSAL.md` "Universal guardrails".
+`file://spec-bundle/operations/workflow-universal.md` "Universal guardrails".
 
 ## 4. Model dispatch
 
@@ -175,4 +175,4 @@ Once dispatched:
 - Workpad comment ID: [tracker comment id]
 
 The tracker issue's `## Workpad` comment is the live execution
-journal per `file://workflow/UNIVERSAL.md` Step 1.
+journal per `file://spec-bundle/operations/workflow-universal.md` Step 1.

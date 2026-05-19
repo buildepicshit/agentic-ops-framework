@@ -83,7 +83,7 @@ periodic triage:
 - Owner alone closes entries as `won't-fix`.
 - Feedback citing facts (lint output, hook behaviour, file
   contents) MUST use the citation grammar from
-  `file://templates/SPEC.schema.md` §2.
+  `file://spec-bundle/schema/SPEC.schema.md` §2.
 - Agents MUST NOT include secrets, credentials, or third-party
   private content in feedback entries.
 - Agents MUST NOT use this channel to bypass owner authority on

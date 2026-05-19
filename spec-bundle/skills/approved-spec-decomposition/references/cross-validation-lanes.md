@@ -1,7 +1,7 @@
 # Cross-validation lane assignment
 
 Extracted from
-`file://agents/skills/approved-spec-decomposition/SKILL.md` per
+`file://spec-bundle/skills/approved-spec-decomposition/SKILL.md` per
 the references/ progressive-disclosure convention (SE1 capture
 in
 `judgment://agent-synthesis`).
@@ -14,7 +14,7 @@ Fires only when:
   family (BLOCKING rule per the parent skill).
 
 For routine decomposition orchestration, read the spine of
-`file://agents/skills/approved-spec-decomposition/SKILL.md`;
+`file://spec-bundle/skills/approved-spec-decomposition/SKILL.md`;
 this reference covers only the cross-validation lane mechanics.
 
 ## Pattern
@@ -33,7 +33,7 @@ runs between `in-progress` and `in-review`:
 3. Findings are recorded in the workpad `Validation` section.
 4. Primary agent addresses findings (code/test/docs) or posts
    explicit pushback per the PR feedback sweep protocol in
-   `file://agents/templates/WORKFLOW.body.md` "PR feedback
+   `<adopter-policy-repo>/agents/templates/WORKFLOW.body.md` (fleet-baseline reference; bes-fleet-policy-layout-specific) "PR feedback
    sweep protocol".
 5. Only after cross-validation findings are resolved does the
    task flip `in-progress → in-review`.
@@ -41,9 +41,9 @@ runs between `in-progress` and `in-review`:
 ## Skill responsibilities
 
 The `code-review` skill at
-`file://agents/skills/code-review/SKILL.md` and the
+`file://spec-bundle/skills/code-review/SKILL.md` and the
 `spec-review` skill at
-`file://agents/skills/spec-review/SKILL.md` are the executors
+`file://spec-bundle/skills/spec-review/SKILL.md` are the executors
 of cross-validation; this skill (`approved-spec-decomposition`)
 names the lane.
 

@@ -23,7 +23,7 @@ Procedure:
    spec, an academic paper, an internal-but-prior SPEC).
 2. Fetch and read the reference's spec/SPEC.md/whitepaper.
 3. Cite verbatim in §4 Authority Map with `url://`, `file://`, or
-   `owner://` prefix per `file://templates/SPEC.schema.md` §2.
+   `owner://` prefix per `file://spec-bundle/schema/SPEC.schema.md` §2.
 4. Map the reference's primary entities, state machines, and
    normative requirements onto fleet primitives (citation
    discipline, owner-only authority, fleet propagation, hooks,

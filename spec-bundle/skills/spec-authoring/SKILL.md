@@ -150,7 +150,7 @@ Decision SPECs continue to require §17.
 
 Per the same ceremony-weight Decision, Contract SPECs landing at
 `status: verified` via the capture-after exception
-(`file://templates/SPEC.schema.md` §1.3) MAY use a
+(`file://spec-bundle/schema/SPEC.schema.md` §1.3) MAY use a
 defer-shorthand for §1 Problem Statement and §13 Test and
 Validation Matrix:
 
@@ -188,7 +188,7 @@ positive and negative examples, and the list of constructs that do
 NOT require citation (section headers, editorial framing, internal
 definitions, internal cross-references, pseudocode, domain-model
 field references) live in
-`file://templates/SPEC.schema.md` §2.
+`file://spec-bundle/schema/SPEC.schema.md` §2.
 
 Operating principle: agent memory and training are LEGITIMATE INPUTS
 to the ideation conversation and to your authoring reasoning. They
@@ -200,14 +200,14 @@ in the artefact.
 
 When the lint flags a sentence that is in fact editorial, append
 `<!-- lint-ok: no-citation -->` per
-`file://templates/SPEC.schema.md` §2.5. Use sparingly; pervasive
+`file://spec-bundle/schema/SPEC.schema.md` §2.5. Use sparingly; pervasive
 suppression is itself a quality signal.
 
 ## Quality Gate Handoff
 
 This skill MUST NOT set `status: approved` on any artefact.
 Authority for approval rests with the owner alone, per
-`file://templates/SPEC.schema.md` §1.3 and
+`file://spec-bundle/schema/SPEC.schema.md` §1.3 and
 `file://examples/reference-procedure-spec`
 §7.6.
 

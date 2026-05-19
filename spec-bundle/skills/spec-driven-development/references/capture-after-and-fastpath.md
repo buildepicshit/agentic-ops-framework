@@ -1,12 +1,12 @@
 # Capture-after pattern and the `fastpath` SPEC type
 
 Extracted from
-`file://skills/spec-driven-development/SKILL.md` per the
+`file://spec-bundle/skills/spec-driven-development/SKILL.md` per the
 references/ progressive-disclosure convention (SE1 capture in
 `judgment://agent-synthesis`).
 
-Authority: `file://templates/SPEC.schema.md` §1.3 "Capture-after
-exception (owner-only)"; `file://skills/fast-path/SKILL.md` for
+Authority: `file://spec-bundle/schema/SPEC.schema.md` §1.3 "Capture-after
+exception (owner-only)"; `file://spec-bundle/skills/fast-path/SKILL.md` for
 fastpath thresholds.
 
 ## When to read this
@@ -19,7 +19,7 @@ Fires only when:
 
 For routine IDEA → SPEC → review → approve → execute → verify →
 close work, read the spine of
-`file://skills/spec-driven-development/SKILL.md`
+`file://spec-bundle/skills/spec-driven-development/SKILL.md`
 directly; this reference does not apply.
 
 ## Procedure
@@ -28,7 +28,7 @@ The IDEA → SPEC → review → approve → execute → verify → close
 order is the default. There is one recognized exception:
 **capture-after**, which is now formalized as the **`fastpath`
 SPEC type** for small, single-component, reversible owner-directed
-work (see `file://skills/fast-path/SKILL.md` for
+work (see `file://spec-bundle/skills/fast-path/SKILL.md` for
 thresholds). Use fastpath when ALL fast-path thresholds hold
 (≤ 1 file, ≤ 50 lines, single component, no public contract
 impact, no cross-session compounding risk, explicit owner
@@ -63,7 +63,7 @@ Reference precedents:
   `file://examples/reference-inbox-spec`
   as the inaugural-capture-after Contract.
 - Formalized in the schema state machine at
-  `file://templates/SPEC.schema.md` §1.3 "Capture-after
+  `file://spec-bundle/schema/SPEC.schema.md` §1.3 "Capture-after
   exception".
 
 Use sparingly; the default order exists because it produces

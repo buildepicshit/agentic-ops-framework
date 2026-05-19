@@ -14,13 +14,13 @@ ideated_in: null
 
 <!--
 Fast-path SPEC template. Use ONLY when ALL fast-path thresholds in
-`file://skills/fast-path/SKILL.md` "Thresholds" are met. If
+`file://spec-bundle/skills/fast-path/SKILL.md` "Thresholds" are met. If
 your work exceeds any threshold, escalate to a full task/contract/
 decision SPEC via the standard `/idea-capture` → `/author-spec`
 flow.
 
 Fast-path SPECs use the **capture-after** pattern by default
-(`file://skills/spec-driven-development/SKILL.md`
+(`file://spec-bundle/skills/spec-driven-development/SKILL.md`
 "Exception: capture-after"): the work is performed first under
 owner directive, then this SPEC is filed as the citable authority
 record. The artefact lands at `status: closed` in the same commit

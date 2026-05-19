@@ -15,14 +15,14 @@ context lives in a durable per-repo inbox rather than vanishing
 into chat.
 
 **Authority:**
-`file://skills/cross-repo-informational-channel/SKILL.md`;
-`file://skills/cross-repo-informational-channel/SKILL.md`.
+`file://spec-bundle/skills/cross-repo-informational-channel/SKILL.md`;
+`file://spec-bundle/skills/cross-repo-informational-channel/SKILL.md`.
 
 ## How to use
 
 **On session start (every agent in this repo):** read the last 5
 inbox entries as part of Step 0 orientation (see
-`file://agents/skills/repo-orientation/SKILL.md` Step 3). Each
+`file://spec-bundle/skills/repo-orientation/SKILL.md` Step 3). Each
 entry tells you something that changed externally or hands off
 work continuation.
 
@@ -85,7 +85,7 @@ the format below. Newest at top.
 - Truncate this file to the most recent 50 entries on archival;
   do not let it grow unboundedly.
 - Entries citing facts MUST use the citation grammar
-  (`file://agents/specs/SPEC.schema.md` §2).
+  (`file://spec-bundle/schema/SPEC.schema.md` §2).
 - Do NOT include secrets, credentials, or third-party private
   data. Inboxes are git-tracked or working-tree visible to any
   agent landing locally.

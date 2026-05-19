@@ -3,9 +3,29 @@ bundle_version: "2.0.0"
 conformance_profile: "core"
 generated_on: "2026-05-19"
 generator: "agentic-ops-framework"
+# schema_uri pins the schema to a stable form. Populated by release
+# tooling with the commit SHA of the SPEC at tag time. Between tags
+# (current state) the value points at main as an honest placeholder
+# with the explicit "this URL is mutable until release tooling pins"
+# convention codified in the v2.0 repack SPEC §6.1 + §8.1.
+# Codex Round-2 flagged the unpinned form as untrustworthy; the
+# correct remediation is release-tooling integration, not a fake
+# pin at authoring time.
 schema_uri: "https://github.com/buildepicshit/agentic-ops-framework/blob/main/specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md#8-schema-specification"
-source_commit: ""              # populated by release tooling at tag time
-source_tag: "v2.0.0"
+
+# source_commit populated by release tooling at tag time. Empty
+# between tags (current state). Release tooling MUST refuse to
+# cut a tag with empty source_commit; in-development manifests
+# acknowledge this explicitly by leaving the field empty rather
+# than fabricating a value.
+source_commit: ""
+
+# source_tag empty between tags. The v2.0.0 tag predates the v2.1
+# schema bump and has its own (older) manifest content; pointing
+# at v2.0.0 from a v2.1-schema manifest would mislead. The next
+# tagged release will be v2.1 with full v2.1 schema population
+# including source_commit + source_tag at tag time.
+source_tag: ""
 
 intent:
   product_name: "agentic-ops-framework"

@@ -7,7 +7,7 @@ description: "Use as the BLOCKING per-type quality gate after authoring or revis
 
 Authority: `file://examples/reference-procedure-spec`
 §10, §11.3, §17.3. Shared schema:
-`file://templates/SPEC.schema.md` §5.
+`file://spec-bundle/schema/SPEC.schema.md` §5.
 
 This skill is **BLOCKING**. A spec MUST NOT advance to
 `approved-pending-owner` while any blocking criterion fails. The
@@ -259,13 +259,13 @@ After running the gate the skill MUST emit, in this order:
   §10, §11.3, §17.3.
 - Per-type criteria:
   `file://skills/spec-review/references/per-type-gates.md`.
-- Shared schema: `file://templates/SPEC.schema.md` §5
+- Shared schema: `file://spec-bundle/schema/SPEC.schema.md` §5
   (handoff), §1.3 (state machine), §2 (citation grammar), §3
   (RFC 2119).
-- Companion workflow: `file://agents/workflows/review-spec.md`.
+- Companion workflow: `<adopter-policy-repo>/agents/workflows/review-spec.md` (fleet-baseline reference; bes-fleet-policy-layout-specific).
 - Lint script: `file://scripts/lint-spec.sh` (if absent at
   the time of invocation, a Contract SPEC review MUST report
   `criterion: lint-unavailable`, `severity: blocking`).
 - Authoring side: `file://skills/spec-authoring/SKILL.md`.
 - Lifecycle skill:
-  `file://skills/spec-driven-development/SKILL.md`.
+  `file://spec-bundle/skills/spec-driven-development/SKILL.md`.

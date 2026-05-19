@@ -51,7 +51,7 @@ producing IDEA.md and any owner directives. Three-failure-mode
 framing is RECOMMENDED.
 
 Capture-after defer-shorthand (status: verified only): per
-`file://templates/SPEC.schema.md` §1.3 and the 2026-01-15
+`file://spec-bundle/schema/SPEC.schema.md` §1.3 and the 2026-01-15
 ceremony-weight-refactor Decision SPEC §7, when this SPEC lands
 at `status: verified` via the capture-after exception, this
 section MAY be a one-paragraph cite-by-id pointer to the
@@ -250,7 +250,7 @@ and §14.
 
 Capture-after defer-shorthand (status: verified only): when this
 SPEC lands at `status: verified` via the capture-after exception
-(`file://templates/SPEC.schema.md` §1.3) and the validation
+(`file://spec-bundle/schema/SPEC.schema.md` §1.3) and the validation
 matrix is fully exercised by the front-matter `acceptance_commands`
 plus a citation to the producing IDEA's §13, this section MAY be
 a one-paragraph cite-by-id pointer to the IDEA — e.g. "See
