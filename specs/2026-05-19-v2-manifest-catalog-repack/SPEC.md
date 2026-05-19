@@ -1,6 +1,6 @@
 ---
 id: 2026-05-19-v2-manifest-catalog-repack
-status: in-execution
+status: verified
 type: contract
 owner: HasNoBeef
 repo: agentic-ops-framework
@@ -734,15 +734,15 @@ function validate_manifest():
 (See §13 for tests; checkboxes are the post-execution
 verification list.)
 
-- [ ] AC-1: SPEC lint clean
-- [ ] AC-2: manifest exists
-- [ ] AC-3: validate-manifest exits 0
-- [ ] AC-4: every facet has primary file
-- [ ] AC-5: hook tests 33/33 pass (no regression)
-- [ ] AC-6: example lint clean (no regression)
-- [ ] AC-7: CI green post-repack
-- [ ] AC-8: v2.0.0 tag exists
-- [ ] AC-9: CHANGELOG v2.0 entry present
+- [x] AC-1: SPEC lint clean
+- [x] AC-2: manifest exists
+- [x] AC-3: validate-manifest exits 0
+- [x] AC-4: every facet has primary file
+- [x] AC-5: hook tests 33/33 pass (no regression)
+- [x] AC-6: example lint clean (no regression)
+- [x] AC-7: CI green post-repack
+- [ ] AC-8: v2.0.0 tag exists (pending immediately after this commit)
+- [x] AC-9: CHANGELOG v2.0 entry present
 
 ## 16. Rollback Plan
 
@@ -812,21 +812,188 @@ strategy: <!-- lint-ok: no-citation -->
 
 ### 19.1 Files changed
 
-(to be filled — at Verification phase)
+60 files changed in commit `1104e3a`
+(2016 insertions / 72 deletions):
+
+**Created** (24 new files):
+- `AGENTS.md` (new top-level entry doc)
+- `CLAUDE.md` (new Claude Code entry doc; imports AGENTS.md)
+- `scripts/validate-manifest.sh` (mechanical completeness
+  gate)
+- `spec-bundle/manifest.yaml` (front-door manifest)
+- `spec-bundle/architecture/CONTEXT.md` +
+  `solution-strategy.md`
+- `spec-bundle/deployment/install.md` +
+  `requirements.md`
+- `spec-bundle/behavior/features/lint-citation-grammar.feature`
+  + `hook-blocks-ai-attribution.feature`
+- `spec-bundle/customization/contract.md` +
+  `knobs.schema.json`
+- `spec-bundle/decisions/INDEX.md`
+- `spec-bundle/quality/requirements.md` +
+  `12-factor-overlay.md`
+- `spec-bundle/operations/failures.md` +
+  `observability.md` + `safety-invariants.md`
+- `spec-bundle/non-goals/INDEX.md`
+
+**Renamed** (33 files via `git mv`; history preserved):
+- `schema/SPEC.schema.md` →
+  `spec-bundle/schema/SPEC.schema.md`
+- `templates/*.template.md` (6 files) →
+  `spec-bundle/templates/*.template.md`
+- `skills/<name>/SKILL.md` (20 skills) →
+  `spec-bundle/skills/<name>/SKILL.md`
+- `skills/<name>/references/*.md` (4 references) →
+  `spec-bundle/skills/<name>/references/*.md`
+- `workflow/UNIVERSAL.md` →
+  `spec-bundle/operations/workflow-universal.md`
+- `workpads/*.template.md` (3 files) →
+  `spec-bundle/templates/workpads/*.template.md`
+
+**Modified** (4 files):
+- `.github/workflows/ci.yml` — adds `validate-manifest`
+  job (5 jobs total now)
+- `CHANGELOG.md` — v2.0 entry with migration index
+- `README.md` — rewritten for v2.0 with v1.x migration
+  table
+- `scripts/validate-skill-frontmatter.sh` — scans
+  `spec-bundle/skills/` (was `skills/`)
+
+**Removed**:
+- `docs/` (was empty)
+- `workflow/` (after UNIVERSAL.md moved)
 
 ### 19.2 Commands run
 
-(to be filled — at Verification phase)
+- `cmd://mkdir -p spec-bundle/{architecture,deployment,
+  behavior/features,customization/profiles,decisions,
+  quality,operations,non-goals,conformance}`.
+- `cmd://git mv schema spec-bundle/schema` +
+  `templates spec-bundle/templates` +
+  `skills spec-bundle/skills` +
+  `workpads spec-bundle/templates/workpads`.
+- `cmd://mv workflow/UNIVERSAL.md
+  spec-bundle/operations/workflow-universal.md` +
+  `git rm -r workflow` + `rmdir docs`.
+- `cmd://chmod +x scripts/validate-manifest.sh`.
+- `cmd://bash scripts/lint-spec.sh
+  specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md`
+  — exit 0 (0 errors, 0 warnings, 50 citation hits).
+- `cmd://bash scripts/validate-manifest.sh` — exit 0
+  (PASS — manifest schema 2.0.0, conformance core, 8
+  facets).
+- `cmd://bash scripts/validate-skill-frontmatter.sh` —
+  exit 0 (clean; 20 skills under spec-bundle/skills/).
+- `cmd://bash tests/hooks/run-tests.sh` — 33 pass /
+  0 fail.
+- `cmd://node --check scripts/preflight.mjs` — clean.
+- Per-example lint: 7 examples × `bash scripts/lint-spec.sh
+  examples/*/IDEA.md examples/*/SPEC.md` — all exit 0.
+- `cmd://git add` (explicit; no bulk staging) + commit
+  + `git push origin main`.
+- `cmd://gh -R buildepicshit/agentic-ops-framework run
+  list --limit 1` — CI run `26074043565` reports
+  `conclusion: success`.
 
 ### 19.3 Verification result
 
-(to be filled — at Verification phase)
+PASS. All 9 ACs met except AC-8 (v2.0.0 tag) which is
+pending immediately after this commit lands. CI is
+green on the v2.0 repack commit (`1104e3a`); five jobs
+pass (lint-spec, validate-skills, test-hooks,
+validate-manifest, preflight-self-check).
+
+The manifest+catalog packaging successfully exemplifies
+the methodology the sibling repo
+`agentic-installation-methodology` publishes. The
+worked-case-study contract is discharged: Product A's
+v2.0 IS the manifest+catalog shape Product B
+advocates.
 
 ### 19.4 Residual risk
 
-(to be filled — at Verification phase)
+- **Scaffold-grade content in several facets**: the
+  spec-bundle/conformance/ directory is empty;
+  per-decision ADRs at spec-bundle/decisions/ADR-NNN-
+  <slug>.md are not yet authored (only INDEX is); the
+  Structurizr DSL diagrams at
+  spec-bundle/architecture/*.dsl are not yet authored.
+  This is explicitly documented in CHANGELOG v2.0 as
+  "reserved for v2.x". The bundle is structurally
+  complete but content-thin in those facets.
+- **Cross-reference rot**: existing internal SPECs
+  under specs/ that referenced `file://schema/...`,
+  `file://templates/...`, `file://skills/...` paths
+  now point at locations that no longer exist. The
+  lint script does not validate file:// paths deeply,
+  so these are not caught by CI. They are historical
+  artefacts; consumers who follow the references will
+  hit 404s. Acceptable per the SPEC §10 F-4 failure
+  class; a follow-on cross-reference validator script
+  could close this gap in v2.x.
+- **No symlink shims**: the SPEC §18 mentioned
+  optional 30-day symlinks from v1.x paths to v2.0
+  paths to ease transition. These were NOT created.
+  Rationale: v1.1 tag is unchanged; consumers pin v1.1
+  if they don't want to update paths. Adding symlinks
+  in main would complicate the layout without
+  benefit. If consumer feedback indicates pain, can be
+  added in a v2.0.1 patch.
+- **Same-family review caveat**: this SPEC was both
+  authored and self-reviewed by Claude-Opus-4.7 lanes.
+  Cross-family pass (Codex) on the v2.0 repack commit
+  is recommended before tagging v2.0.0 final — but
+  the rolls-royce / keep-rolling owner directive
+  preferred momentum; cross-family pass can land
+  before the paired-release with Product B v1.0.
 
 ### 19.5 Spec evidence candidates
 
-(to be filled — durable lessons for the
-spec-evidence-governance skill)
+- **Manifest+catalog packaging is practical for OSS
+  framework repos**. The v2.0 reorganization preserved
+  all functionality (33/33 hook tests; 7/7 example
+  lint; CI green) while reorganizing 33 existing files
+  + adding 24 new artefacts. The pattern generalises:
+  any OSS framework with schema + templates + skills +
+  resources can adopt manifest+catalog packaging
+  without functional regression. Capture under
+  `spec-evidence-governance` skill: "manifest+catalog
+  is a low-risk reorganization for established
+  frameworks; the cost is migration index + path
+  updates in entry docs; the benefit is the front-
+  door manifest as a single source of truth for what
+  the bundle contains."
+- **Scaffold-grade facet content is honest at v2.0**.
+  Several facets ship with placeholder / cross-link
+  content (per-decision ADRs are INDEX-only; conformance
+  suite is empty). Rather than wait for full content,
+  v2.0 ships the structural contract NOW with explicit
+  CHANGELOG "reserved for v2.x" framing. This
+  honest-disclosure posture aligns with the methodology's
+  own §8 Posture from the parent Decision SPEC. Capture
+  as authoring pattern: "when reorganizing into a new
+  packaging shape, ship the structural contract at the
+  release boundary and document content gaps as
+  `reserved for next.x` rather than blocking on full
+  content."
+- **git-mv preserves history through reorganization**.
+  All 33 renamed files retained git history (the
+  `R` status code in `git status`). The commit diff
+  shows each rename with `(100%)` similarity, meaning
+  GitHub's file-history UI will follow the moves
+  correctly. This is non-obvious — naïve copy-and-
+  remove would have shown as separate add+remove pairs
+  and lost the history. Capture as authoring pattern
+  for any future repack: "use `git mv` for every
+  reorganization, never `cp + rm`."
+- **`validate-manifest.sh` was the right scaffolding
+  order**. Authoring the validation script BEFORE the
+  manifest + facet primaries meant the script could be
+  tested by deliberately failing (7 missing primaries
+  detected on first run) before any successful
+  validation. The TDD-style approach surfaced one bug
+  immediately (bash strict-mode unbound variable on
+  empty issues array) that the always-pass-on-success
+  flow would have missed. Capture under `tdd` skill
+  guidance: "write the gate that detects absence
+  before authoring what the gate measures."
