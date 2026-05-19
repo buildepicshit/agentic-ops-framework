@@ -1,7 +1,7 @@
 # Operations — Safety Invariants
 
 MUST-numbered safety list per the Symphony §9.5 pattern
-(`file://../../research/primary-sources/symphony-spec.md`
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/symphony-spec.md`
 §3 — transferable building block 7). Each invariant is a
 hard rule the framework's tooling enforces or the
 adopter's discipline upholds.

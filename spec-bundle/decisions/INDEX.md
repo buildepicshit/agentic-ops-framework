@@ -1,7 +1,7 @@
 # Decisions — Index
 
 ADR-style decision records per Nygard's foundational
-template (`file://../../research/primary-sources/adr-nygard.md`
+template (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/adr-nygard.md`
 §3): five-section Title / Context / Decision /
 Consequences / Status.
 
@@ -28,12 +28,12 @@ to the framework's internal SPEC ledger at
 ## Why this format
 
 - Nygard's lightweight thesis
-  (`file://../../research/primary-sources/adr-nygard.md`
+  (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/adr-nygard.md`
   §3 verbatim "Large documents are never kept up to date.
   Small, modular documents have at least a chance at
   being updated"): each ADR is ≤2 pages.
 - The state-of-practice ADR ecosystem catalogue
-  (`file://../../research/primary-sources/adr-tools-state.md`
+  (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/adr-tools-state.md`
   §3) lists alternatives (MADR, Y-statements) — the
   framework adopts Nygard's template as the minimum
   contract; adopters MAY use MADR's richer fields in

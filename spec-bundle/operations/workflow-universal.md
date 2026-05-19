@@ -7,14 +7,14 @@
    or `AGENT_FEEDBACK.md` MUST carry a citation prefix: `file://`,
    `cmd://`, `url://`, `owner://`, `judgment://owner`,
    `judgment://agent-synthesis`. Agent memory is INPUT, never
-   EVIDENCE. See `templates/SPEC.schema.md` §2.
+   EVIDENCE. See `spec-bundle/schema/SPEC.schema.md` §2.
 2. **Owner authority is non-negotiable.** Owner alone sets
    `status: approved`, `status: decomposed`, and `status: closed`
    on a SPEC. Skills MAY set `approved-pending-owner`,
    `in-execution`, `verified`, `needs-revision`, and
    `owner-blocking`. Agents and subagents MUST NOT set any
    owner-only status under any condition
-   (`templates/SPEC.schema.md` §1.3).
+   (`spec-bundle/schema/SPEC.schema.md` §1.3).
 3. **Work only in the provided repository.** Do not edit paths
    outside the workspace root. Cross-repo work goes through a
    fleet directive (your fleet-policy enforcement channel) or a
@@ -22,7 +22,7 @@
 4. **Surface friction; do not bypass.** If a hook, lint, or audit
    blocks you, the correct response is `/agent-feedback`, NOT
    `--no-verify`, NOT `VERIFY_SKIP=1`, NOT hook disablement. See
-   `skills/agent-feedback/SKILL.md`.
+   `spec-bundle/skills/agent-feedback/SKILL.md`.
 5. **Final message reports outcomes.** Completed actions and
    blockers only. Do not include "next steps for user" prose.
 
@@ -32,14 +32,14 @@ Three minutes of reading, no edits:
 
 1. `AGENTS.md` (root) → its imports → `STATUS.md` →
    `OPERATING_MODEL.md` → your model-routing policy →
-   `templates/SPEC.schema.md`.
+   `spec-bundle/schema/SPEC.schema.md`.
 2. The **`SESSION_JOURNAL.md`** at the repo root (last 3 entries).
    It tells you what the previous agent did, what was left dirty,
    and what you should pick up. If absent, copy from
-   `workpads/SESSION_JOURNAL.template.md`.
+   `spec-bundle/templates/workpads/SESSION_JOURNAL.template.md`.
 3. `AGENT_FEEDBACK.md` at the repo root — any open entries
    relevant to your work. If absent, copy from
-   `workpads/AGENT_FEEDBACK.template.md`.
+   `spec-bundle/templates/workpads/AGENT_FEEDBACK.template.md`.
 4. The active TASK.md (if dispatched) or the SPEC you're
    operating against. The parent SPEC is immutable except for its
    §17 Completion Report.
@@ -50,11 +50,11 @@ Three minutes of reading, no edits:
   (≤ 1 file, ≤ 50 lines, single component, reversible,
   owner-cited): run `/fast-path` and produce a fast-path SPEC at
   `status: closed`. No IDEA, no review gate, no decomposition. See
-  `skills/fast-path/SKILL.md` for thresholds.
+  `spec-bundle/skills/fast-path/SKILL.md` for thresholds.
 - **Non-trivial work otherwise**: run the spec-driven lifecycle:
   IDEA → SPEC → review → owner approves → decompose (Contract/Task
   with ≥ 2 slices) → execute → cross-validate → verify → owner
-  closes. See `skills/spec-driven-development/SKILL.md`.
+  closes. See `spec-bundle/skills/spec-driven-development/SKILL.md`.
 - **Trivial work** (typo, link, formatting; no behavior change):
   edit directly. Hooks still apply.
 
@@ -131,7 +131,7 @@ model family than the implementer. The reviewer:
 
 Address each finding in code/tests/docs OR post a justified
 pushback reply. Same-family review is structurally weaker; see
-`skills/code-review/SKILL.md` "Hard Rules" for the
+`spec-bundle/skills/code-review/SKILL.md` "Hard Rules" for the
 `same-family-review` escape hatch when cross-family is
 unavailable.
 
@@ -143,7 +143,7 @@ working against an `approved` SPEC with ≥ 2 slices and no
 
 1. Stop coding.
 2. Run `/decompose-approved-spec <parent_spec_id>` (see
-   `skills/approved-spec-decomposition/SKILL.md`).
+   `spec-bundle/skills/approved-spec-decomposition/SKILL.md`).
 3. Owner reviews + approves the decomposition (one-shot, not
    per-task). Owner alone flips `approved → decomposed`.
 4. Tasks become trackable; proceed.
@@ -183,7 +183,7 @@ Before ending your session (or as Stop-hook reminds you):
 
 ## Related skills
 
-Available in `skills/`:
+Available in `spec-bundle/skills/`:
 
 - `repo-orientation` — what to read, in what order, before editing.
 - `spec-driven-development` — the IDEA→SPEC→tasks→execute

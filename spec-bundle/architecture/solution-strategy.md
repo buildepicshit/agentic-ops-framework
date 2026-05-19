@@ -1,7 +1,7 @@
 # Architecture — Solution Strategy
 
 Per arc42 §4 Solution Strategy
-(`file://../../research/primary-sources/arc42.md` §3).
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/arc42.md` §3).
 
 ## Strategic decisions
 
@@ -58,7 +58,7 @@ ADR-style decision under `../decisions/`.
 ## Top-level quality goals
 
 Per arc42 §1.2 (top three to five quality goals;
-`file://../../research/primary-sources/arc42.md` §3):
+`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/arc42.md` §3):
 
 1. **Citation precision** — every factual claim
    resolves to a source the reader can verify (file,
@@ -76,6 +76,6 @@ Per arc42 §1.2 (top three to five quality goals;
 ## Architecture decomposition
 
 For Container / Component diagrams (C4 model
-`file://../../research/primary-sources/c4-model.md` §3),
+`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/c4-model.md` §3),
 see `architecture.dsl` once Structurizr DSL artefacts
 land (v2.x slice — placeholder at v2.0).

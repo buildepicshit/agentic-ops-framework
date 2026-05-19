@@ -1,7 +1,7 @@
 # Deployment — Requirements
 
 Per 12-factor's Factor II "Dependencies" framing
-(`file://../../research/primary-sources/12-factor.md` §3):
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/12-factor.md` §3):
 declare and isolate dependencies explicitly.
 
 ## Runtime dependencies
@@ -29,7 +29,7 @@ The framework assumes the adopter uses one or more of:
 - Optionally: an issue tracker and an
   autonomous-issue-dispatch runner for the Symphony-style
   patterns
-  (`file://../../research/primary-sources/symphony-spec.md` §3).
+  (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/symphony-spec.md` §3).
 
 ## What the framework does NOT require
 
@@ -46,6 +46,6 @@ The framework itself is reproducible-by-construction: a
 fresh clone at a given tag is byte-identical to any other
 clone at that tag. The framework does NOT yet adopt
 Nix-style content-hash reproducibility for adopter
-products (`file://../../research/primary-sources/nix-flakes.md`
+products (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/nix-flakes.md`
 §3); that's an open methodology question per the
 `non-goals/INDEX.md` entry on reproducibility-of-product.

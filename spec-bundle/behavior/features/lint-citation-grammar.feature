@@ -1,6 +1,6 @@
 Feature: Lint enforces citation grammar on SPEC artefacts
   Per Gherkin conventions
-  (file://../../../research/primary-sources/cucumber-gherkin.md §3)
+  (url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/cucumber-gherkin.md §3)
   and the schema's citation grammar at
   file://../../schema/SPEC.schema.md §2.
 

@@ -1,9 +1,9 @@
 # Customization — Deferral Contract
 
-The novel facet per research §4.1 (`file://../../research/primary-sources/leaddev-agent-compiled.md`
+The novel facet per research §4.1 (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/leaddev-agent-compiled.md`
 §3 articulates the gap as risk; this contract closes it as
 procedure). Following Helm values-schema patterns
-(`file://../../research/primary-sources/helm-values-schema.md`
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/helm-values-schema.md`
 §3) for the JSON Schema validation layer.
 
 This document states **what the framework provides by

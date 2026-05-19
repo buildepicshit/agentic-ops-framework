@@ -2,7 +2,7 @@
 
 Failure classes × recovery posture per the Symphony §14
 pattern
-(`file://../../research/primary-sources/symphony-spec.md`
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/symphony-spec.md`
 §3 — transferable building block 10).
 
 ## Failure classes

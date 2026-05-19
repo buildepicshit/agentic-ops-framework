@@ -1,16 +1,40 @@
 #!/usr/bin/env bash
-# fleet-sync.sh — propagate the fleet baseline from the policy repo to a
-# target repo. UNIFORM mode: settings.json, statusline.sh, hooks/ are
-# overwritten to fleet baseline. Per-repo permissions live in
-# .claude/settings.local.json (gitignored).
+# fleet-sync.sh — propagate the fleet baseline from the source policy
+# repo to a target repo. UNIFORM mode: settings.json, statusline.sh,
+# hooks/ are overwritten to fleet baseline. Per-repo permissions live
+# in .claude/settings.local.json (gitignored).
 #
-# Topology is manifest-driven. Edit these files to change what propagates:
-#   agents/scripts/fleet-files.txt          — .agents/ content paths
-#   agents/scripts/fleet-skills.txt         — skill names (mirrored to .claude/skills/)
-#   agents/scripts/fleet-commands.txt       — slash-command names
-#   agents/scripts/fleet-hooks.txt          — hook script names
-#   agents/scripts/fleet-hook-fixtures.txt  — hook test fixtures
-#   agents/scripts/fleet-oss-gitignore.txt  — OSS-posture .gitignore entries
+# IMPORTANT: this script was written for the bes-fleet-policy source
+# layout where fleet content lives under `<source>/agents/...`. The
+# agentic-ops-framework v2.0 layout (this repo) does NOT have an
+# `agents/` directory at the top level — its content lives under
+# `spec-bundle/...`. Running this script with FLEET_SOURCE pointing
+# at agentic-ops-framework v2.0 WILL FAIL: file copies of the form
+# `$SOURCE/agents/$f` resolve to non-existent paths.
+#
+# Adopters of agentic-ops-framework v2.0 who want to operate a fleet
+# should EITHER:
+#   1. Establish a separate source-policy repo (bes-fleet-policy
+#      style) with `agents/` layout, and use this script from there,
+#      OR
+#   2. Author their own v2.0-layout-aware propagation script that
+#      reads from `<source>/spec-bundle/skills/`, `<source>/scripts/`,
+#      etc. (a follow-on Task SPEC under v2.x will produce this
+#      v2.0-native fleet-sync; not yet authored).
+#
+# This script is bundled in v2.0 as the reference implementation of
+# the bes-fleet-policy-layout propagation pattern. It is intentionally
+# preserved unchanged in its source-layout assumptions; the v2.0
+# fleet-sync replacement is queued as a v2.x slice.
+#
+# Topology is manifest-driven. The manifest files (with the prefix
+# determined at runtime per below):
+#   fleet-files.txt          — .agents/ content paths
+#   fleet-skills.txt         — skill names (mirrored to .claude/skills/)
+#   fleet-commands.txt       — slash-command names
+#   fleet-hooks.txt          — hook script names
+#   fleet-hook-fixtures.txt  — hook test fixtures
+#   fleet-oss-gitignore.txt  — OSS-posture .gitignore entries
 #
 # Usage: fleet-sync.sh <target-repo-absolute-path> <internal|oss>
 #   internal: full fleet baseline; .agents/ + .claude/ committed.
@@ -18,6 +42,8 @@
 #             content lays in working tree only.
 #
 # Source location: auto-derived from script path. Override with FLEET_SOURCE env.
+# Manifest dir:    auto-detected from FLEET_MANIFEST_DIR env, or
+#                  agents/scripts/ if present, else scripts/.
 
 set -eu
 
@@ -26,6 +52,21 @@ SOURCE="${FLEET_SOURCE:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
 TARGET="${1:?target repo path required}"
 POSTURE="${2:?posture required (internal|oss)}"
 case "$POSTURE" in internal|oss) ;; *) echo "posture must be internal|oss" >&2; exit 64 ;; esac
+
+# Refuse to run against a source that does not have the expected
+# bes-fleet-policy-style `agents/` layout. This refusal is the
+# v2.0-layout-detection guard the codex review (finding 3.4) flagged
+# was missing: previously the script would silently fail mid-copy.
+if [ ! -d "$SOURCE/agents/scripts" ] || [ ! -f "$SOURCE/agents/scripts/fleet-skills.txt" ]; then
+    echo "fleet-sync: source layout not recognised." >&2
+    echo "  Expected: \$SOURCE/agents/scripts/fleet-skills.txt at $SOURCE/agents/scripts/fleet-skills.txt" >&2
+    echo "  This script propagates from a bes-fleet-policy-style source." >&2
+    echo "  If you are running it against an agentic-ops-framework v2.0" >&2
+    echo "  source, switch to a separate source-policy repo (see script" >&2
+    echo "  header) or wait for the v2.0-native propagation slice." >&2
+    exit 65
+fi
+MANIFEST_DIR="$SOURCE/agents/scripts"
 
 # Read a manifest file into a bash array.
 # Strips blank lines and comments (# prefix).
@@ -41,11 +82,11 @@ read_manifest() {
     done < "$file"
 }
 
-read_manifest "$SOURCE/agents/scripts/fleet-skills.txt" SKILLS
-read_manifest "$SOURCE/agents/scripts/fleet-commands.txt" COMMANDS
-read_manifest "$SOURCE/agents/scripts/fleet-hooks.txt" HOOKS
-read_manifest "$SOURCE/agents/scripts/fleet-hook-fixtures.txt" HOOK_FIXTURES
-read_manifest "$SOURCE/agents/scripts/fleet-oss-gitignore.txt" OSS_GITIGNORE
+read_manifest "$MANIFEST_DIR/fleet-skills.txt" SKILLS
+read_manifest "$MANIFEST_DIR/fleet-commands.txt" COMMANDS
+read_manifest "$MANIFEST_DIR/fleet-hooks.txt" HOOKS
+read_manifest "$MANIFEST_DIR/fleet-hook-fixtures.txt" HOOK_FIXTURES
+read_manifest "$MANIFEST_DIR/fleet-oss-gitignore.txt" OSS_GITIGNORE
 
 echo "=== fleet-sync to $TARGET (posture=$POSTURE) ==="
 

@@ -1,7 +1,7 @@
 # Quality — 12-Factor Overlay
 
 Per the 12-factor methodology
-(`file://../../research/primary-sources/12-factor.md`
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/12-factor.md`
 §3). The framework itself is not a SaaS app, so this
 overlay describes the per-factor posture for adopter
 products operated under the framework — NOT the

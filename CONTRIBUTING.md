@@ -19,13 +19,15 @@ hook, a non-trivial bug fix touching multiple files):
 
 1. **Read `OPERATING_MODEL.md`** — the lifecycle and posture
    you're contributing into.
-2. **Read `schema/SPEC.schema.md`** — the citation grammar
-   and front-matter rules.
+2. **Read `spec-bundle/schema/SPEC.schema.md`** — the citation grammar
+   and front-matter rules (v2.0 layout; v1.x consumers
+   see `schema/SPEC.schema.md`).
 3. **Open an issue first** with a one-paragraph problem
    statement. The framework maintainer will signal whether
    it's worth pursuing before you invest in a full SPEC.
 4. **Author an IDEA** at `specs/<YYYY-MM-DD>-<slug>/IDEA.md`
-   using `templates/IDEA.template.md`. The IDEA covers
+   using `spec-bundle/templates/IDEA.template.md` (v2.0
+   layout). The IDEA covers
    problem, substance, constraints, approaches considered,
    recommendation, owner-blocking questions.
 5. **Author a SPEC** at `specs/<YYYY-MM-DD>-<slug>/SPEC.md`

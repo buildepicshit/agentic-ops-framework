@@ -1,7 +1,7 @@
 # Operations — Observability
 
 Three-tier observability per the Symphony §13 pattern
-(`file://../../research/primary-sources/symphony-spec.md`
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/symphony-spec.md`
 §3 — transferable building block 9).
 
 ## Tier 1: REQUIRED logging

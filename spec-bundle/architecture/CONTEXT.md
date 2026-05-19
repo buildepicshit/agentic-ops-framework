@@ -1,9 +1,9 @@
 # Architecture — System Context
 
 Per arc42 §3 Context and Scope
-(`file://../../research/primary-sources/arc42.md` §3) and
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/arc42.md` §3) and
 the C4 model System Context level
-(`file://../../research/primary-sources/c4-model.md` §3),
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/c4-model.md` §3),
 this file states what the framework is, who its users are,
 and what surrounding systems it interacts with.
 
@@ -73,7 +73,7 @@ The framework does NOT include but interacts with:
   CLI, Codex CLI, Symphony, etc.).
 - The framework does NOT enforce a particular tracker;
   see Symphony for that pattern
-  (`file://../../research/primary-sources/symphony-spec.md`
+  (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/symphony-spec.md`
   §3).
 
 See also: `solution-strategy.md` for arc42 §4 Solution

@@ -1,7 +1,7 @@
 # Quality — Requirements
 
 Per arc42 §10 Quality
-(`file://../../research/primary-sources/arc42.md` §3) and
+(`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/arc42.md` §3) and
 the top quality goals named in
 `../architecture/solution-strategy.md`.
 
@@ -116,6 +116,6 @@ hook tests still pass.
 
 - `12-factor-overlay.md` for the operating-system-
   boundary contract per
-  `file://../../research/primary-sources/12-factor.md` §3.
+  `url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/12-factor.md` §3.
 - `../operations/safety-invariants.md` for the MUST-
   numbered safety list.

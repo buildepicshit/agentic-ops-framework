@@ -1,6 +1,6 @@
 # Non-Goals — Facet-Level Negative Space
 
-The second novel facet per research §4.2 (`file://../../research/primary-sources/leaddev-agent-compiled.md`
+The second novel facet per research §4.2 (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/leaddev-agent-compiled.md`
 §3 articulates the broader risk; this facet closes
 ambiguity at integration boundaries). For each of the
 other seven facets, this document states what the facet
@@ -17,7 +17,7 @@ tell where the framework's authority ends.
 - Code-level diagrams for the framework's own
   scripts/hooks. C4 Level 4 is "typically generated
   rather than authored" per
-  `file://../../research/primary-sources/c4-model.md` §3.
+  `url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/c4-model.md` §3.
 - A complete arc42 §6 Runtime View or §7 Deployment
   View for the framework itself (the framework is not
   a runtime service; deployment is documented in
@@ -109,7 +109,7 @@ tell where the framework's authority ends.
 
 ## Why non-goals are first-class
 
-Per research §4.2 (`file://../../research/primary-sources/leaddev-agent-compiled.md`
+Per research §4.2 (`url://github.com/buildepicshit/agentic-installation-methodology/blob/main/research/primary-sources/leaddev-agent-compiled.md`
 §3 risk surface), ambiguity for an installing agent
 typically lives in what the spec DOESN'T say. By
 enumerating non-goals per facet, this document closes
