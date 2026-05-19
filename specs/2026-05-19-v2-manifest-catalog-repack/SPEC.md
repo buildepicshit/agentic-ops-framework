@@ -1,6 +1,6 @@
 ---
 id: 2026-05-19-v2-manifest-catalog-repack
-status: approved-pending-owner
+status: in-execution
 type: contract
 owner: HasNoBeef
 repo: agentic-ops-framework
