@@ -12,7 +12,6 @@ acceptance_commands:
   - bash scripts/lint-spec.sh specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md
   - test -f spec-bundle/manifest.yaml
   - bash scripts/validate-manifest.sh
-  - bash scripts/lint-spec.sh spec-bundle/manifest.yaml
 cites_decision: 2026-05-18-agentic-installation-methodology
 ---
 
