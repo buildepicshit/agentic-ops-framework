@@ -82,7 +82,7 @@ requires_network: false
 requires_secrets: []
 ideated_in: specs/2026-01-15-example-procedure-v1/IDEA.md
 acceptance_commands:
-  - test -f templates/SPEC.task.template.md
+  - test -f spec-bundle/templates/SPEC.task.template.md
   - bash scripts/lint-spec.sh specs/<id>/SPEC.md
 ---
 ```
@@ -366,8 +366,8 @@ The `spec-review` skill MUST NOT set `status: approved`.
   `spec-bundle/templates/SPEC.contract.template.md`,
   `spec-bundle/templates/SPEC.decision.template.md`,
   `spec-bundle/templates/SPEC.fastpath.template.md`,
-  `templates/IDEA.template.md`,
-  `templates/TASK.template.md`.
+  `spec-bundle/templates/IDEA.template.md`,
+  `spec-bundle/templates/TASK.template.md`.
 - Lint script: `scripts/lint-spec.sh`.
 - Skill validator: `scripts/validate-skill-frontmatter.sh`.
 - Procedure-only skills: `spec-bundle/skills/verification/SKILL.md`,
