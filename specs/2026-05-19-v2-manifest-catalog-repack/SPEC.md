@@ -886,7 +886,39 @@ strategy: <!-- lint-ok: no-citation -->
 
 ## 19. Completion Report
 
-### 19.1 Files changed
+### 19.0 Amendment log (post-verification edits)
+
+Per the pattern established in the parent Decision SPEC
+§14.0 and the corpus SPEC §19.0, this Completion Report
+was filled at original verification 2026-05-19 (v2.0.0
+release tag). Subsequent codex cross-family remediation
+rounds amended §6.1 / §8 (v2.1 schema bump), validate-
+manifest.sh (v2.1 enforcement + semantic containment),
+spec-bundle/manifest.yaml (v2.1 fields populated), and
+template/skill cross-references. §19.1 + §19.2 retain
+the original-verification state; current-state values
+are in this Amendment Log.
+
+| Round | Date | Notable | Commit |
+|---|---|---|---|
+| Original | 2026-05-19 | v2.0 layout repack + v2.0.0 tag | `1104e3a` + `5f59f7b` |
+| §7.E/F | 2026-05-19 | v2.1 schema bump | `ad36bda` |
+| R2 fixes | 2026-05-19 | validator v2.1 + provenance honesty + path migration | `9fef966`, `380db29` |
+| R3 fixes | 2026-05-19 | validator inside-directory + v2.1 example + bare-path migration | `e78b8a4` |
+| R4 fixes | 2026-05-20 | validator semantic-containment + REQUIRED-field expansion + final bare-path migration | `61528c8` |
+
+Current-state evidence supersedes §19.2:
+- repack-SPEC citation-prefix hits: 66 (per current
+  `lint-spec.sh` invocation; was 50 at original
+  verification)
+- manifest spec_version: `2.1.0` (was `2.0.0` at
+  original verification; v2.0.0 release tag stays at
+  `2.0.0`)
+- validate-manifest: PASS at v2.1.0 schema with
+  semantic-containment + 5 top-level REQUIRED + 3
+  intent REQUIRED enforcement
+
+### 19.1 Files changed (historical; original verification)
 
 60 files changed in commit `1104e3a`
 (2016 insertions / 72 deletions):
@@ -954,10 +986,13 @@ strategy: <!-- lint-ok: no-citation -->
 - `cmd://chmod +x scripts/validate-manifest.sh`.
 - `cmd://bash scripts/lint-spec.sh
   specs/2026-05-19-v2-manifest-catalog-repack/SPEC.md`
-  — exit 0 (0 errors, 0 warnings, 50 citation hits).
+  — exit 0 at original verification (0 errors, 0
+  warnings, 50 citation hits; 66 current per §19.0
+  Amendment Log).
 - `cmd://bash scripts/validate-manifest.sh` — exit 0
-  (PASS — manifest schema 2.0.0, conformance core, 8
-  facets).
+  at original verification (PASS — manifest schema
+  2.0.0, conformance core, 8 facets; current schema is
+  2.1.0 per §19.0 Amendment Log).
 - `cmd://bash scripts/validate-skill-frontmatter.sh` —
   exit 0 (clean; 20 skills under spec-bundle/skills/).
 - `cmd://bash tests/hooks/run-tests.sh` — 33 pass /
