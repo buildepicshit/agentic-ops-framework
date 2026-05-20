@@ -235,13 +235,17 @@ for facet in "${facet_slugs[@]}"; do
         # Semantic-containment check: canonicalise both paths and
         # verify the canonicalised primary_index sits inside the
         # canonicalised primary directory. Defeats ../ traversal.
+        # Boundary fix (codex R5): use either equality OR "$path/"
+        # prefix; bare "$path*" prefix-match would falsely accept
+        # sibling dirs like "behavior/features-sibling/" when
+        # primary is "behavior/features/".
         canon_primary="$(cd "$BUNDLE_DIR/$primary" 2>/dev/null && pwd)"
         canon_pi_dir="$(cd "$BUNDLE_DIR/$(dirname "$pi")" 2>/dev/null && pwd)"
         if [ -z "$canon_primary" ] || [ -z "$canon_pi_dir" ]; then
             err "facet '$facet' primary or primary_index cannot be canonicalised (primary=$primary, primary_index=$pi)"
             continue
         fi
-        if [[ "$canon_pi_dir" != "$canon_primary"* ]]; then
+        if [[ "$canon_pi_dir" != "$canon_primary" && "$canon_pi_dir" != "$canon_primary"/* ]]; then
             err "facet '$facet' primary_index ($pi) resolves OUTSIDE primary directory ($primary) after canonicalisation; SPEC §8.3 requires semantic containment"
             continue
         fi

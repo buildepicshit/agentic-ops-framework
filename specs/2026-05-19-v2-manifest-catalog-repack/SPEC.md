@@ -171,8 +171,11 @@ Active authority for this contract:
   `file://../../../agentic-installation-methodology/specs/2026-05-19-primary-source-research-corpus/SPEC.md`
   (status: verified) — the primary-source corpus this
   repack draws methodology primitives from.
-- `file://schema/SPEC.schema.md` — citation grammar,
-  RFC 2119 scoping, front-matter schema.
+- `file://spec-bundle/schema/SPEC.schema.md` — citation
+  grammar, RFC 2119 scoping, front-matter schema (path
+  corrected from `schema/SPEC.schema.md` per codex R5
+  finding; schema lives under `spec-bundle/schema/` in
+  the v2.0 layout).
 
 Active primary-source citations (corpus-grounded):
 
