@@ -64,12 +64,12 @@ Procedure + worked examples (the autonomous-dispatch runner, worktrunk):
 
 The four authoring templates live at:
 
-- `templates/IDEA.template.md` — the IDEA artefact.
-- `templates/SPEC.task.template.md` — concrete, scoped, verifiable
+- `spec-bundle/templates/IDEA.template.md` — the IDEA artefact.
+- `spec-bundle/templates/SPEC.task.template.md` — concrete, scoped, verifiable
   work.
-- `templates/SPEC.contract.template.md` — stateful, multi-component,
+- `spec-bundle/templates/SPEC.contract.template.md` — stateful, multi-component,
   protocol-defining work.
-- `templates/SPEC.decision.template.md` — binding choice between
+- `spec-bundle/templates/SPEC.decision.template.md` — binding choice between
   named options.
 
 Cross-template conventions (front-matter schema, citation grammar,

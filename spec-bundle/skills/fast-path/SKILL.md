@@ -13,7 +13,7 @@ one-file fix.
 
 Authority: `judgment://agent-synthesis` (the
 framework-refresh-lightweight-ceremony Decision);
-`file://templates/SPEC.fastpath.template.md`.
+`file://spec-bundle/templates/SPEC.fastpath.template.md`.
 
 ## Thresholds (ALL must be true)
 
@@ -45,7 +45,7 @@ time. The agent does not get to vibe-check.
    would otherwise have been; lint-spec on any SPEC files, hook
    tests if hooks touched, etc.).
 4. Author `specs/<id>/SPEC.md` from
-   `file://templates/SPEC.fastpath.template.md`. Status:
+   `file://spec-bundle/templates/SPEC.fastpath.template.md`. Status:
    `closed` from the start.
 5. Commit work + SPEC + SPEC_EVIDENCE.md (optional for fast-path —
    only if §5.2 surfaces a genuine residual or evidence candidate)

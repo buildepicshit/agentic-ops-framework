@@ -14,7 +14,7 @@ ideated_in: [repo-relative-path-to-IDEA.md]
 
 <!--
 Template per `specs/2026-01-15-example-procedure-v1/SPEC.md` §9.2.
-Refer to `templates/SPEC.schema.md` for shared conventions
+Refer to `spec-bundle/schema/SPEC.schema.md` for shared conventions
 (front-matter ordering, citation grammar, RFC 2119 rules, section
 naming). The shared section titles `## Authority Map`,
 `## Code/Docs Reality Check`, `## Open Questions`,

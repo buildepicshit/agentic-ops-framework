@@ -10,7 +10,7 @@ implies_spec_type: [task|contract|decision]
 
 <!--
 Template per `specs/2026-01-15-example-procedure-v1/SPEC.md` §9.1.
-Refer to `templates/SPEC.schema.md` for shared conventions
+Refer to `spec-bundle/schema/SPEC.schema.md` for shared conventions
 (front-matter, citation grammar, RFC 2119 rules, section naming).
 
 Citation discipline: every factual claim in this artefact MUST carry a

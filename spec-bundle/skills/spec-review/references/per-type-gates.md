@@ -88,7 +88,7 @@ All criteria are **blocking** unless tagged `advisory`.
 ### Fleet-principle Decision SPECs — additional check
 
 When the SPEC slug matches `principle-*` (per
-`file://skills/spec-authoring/SKILL.md`), apply the
+`file://spec-bundle/skills/spec-authoring/SKILL.md`), apply the
 **verbatim-to-normative trace** check in addition to the standard
 Decision gate:
 

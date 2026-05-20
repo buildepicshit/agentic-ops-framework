@@ -47,7 +47,7 @@ Front-matter schema:
 - `mode` — `HITL` (human-in-the-loop) or `AFK` (autonomous). AFK
   requires bounded ownership, explicit acceptance, no mid-slice
   owner judgment, safe-stop on ambiguity per
-  `file://skills/approved-spec-decomposition/SKILL.md`
+  `file://spec-bundle/skills/approved-spec-decomposition/SKILL.md`
   "AFK Eligibility".
 - `deps` — list of TASK.md ids that MUST reach `done` before this
   one starts.

@@ -11,7 +11,7 @@ stalling, bypassing guardrails, or going silent.
 
 Authority: `judgment://agent-synthesis` (the
 framework-refresh-lightweight-ceremony Decision);
-`file://workpads/AGENT_FEEDBACK.template.md`.
+`file://spec-bundle/templates/workpads/AGENT_FEEDBACK.template.md`.
 
 ## When to use
 
@@ -40,7 +40,7 @@ Do NOT use for:
 ## Procedure
 
 1. Locate `AGENT_FEEDBACK.md` at repo root. If absent, create it
-   from `file://workpads/AGENT_FEEDBACK.template.md`.
+   from `file://spec-bundle/templates/workpads/AGENT_FEEDBACK.template.md`.
 2. Append a new entry at the top of the `## Entries` section using
    the template's `## YYYY-MM-DD HH:MM` heading format.
 3. Fill every required section: Context, What happened, What I
@@ -64,7 +64,7 @@ periodic triage:
   status `surfaced`.
 - For each entry, classify and act:
   - **misalignment** → issue a fleet directive via
-    `file://skills/fleet-enforce/SKILL.md`.
+    `file://spec-bundle/skills/fleet-enforce/SKILL.md`.
   - **bug** → file a fast-path SPEC or full task SPEC depending
     on scope.
   - **friction** → batch with similar entries; owner-decided

@@ -32,7 +32,7 @@ any one changes the principle's identity.
 
 Principle SPECs trigger an additional `spec-review` check —
 the verbatim-to-normative trace — documented in
-`file://skills/spec-review/SKILL.md` under "Decision spec
+`file://spec-bundle/skills/spec-review/SKILL.md` under "Decision spec
 review". Author with that check in mind: every RFC 2119
 clause in §7 MUST trace back to an owner verbatim or a
 `judgment://owner` capture in the upstream IDEA.

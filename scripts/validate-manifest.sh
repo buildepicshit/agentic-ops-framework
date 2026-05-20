@@ -61,6 +61,17 @@ if ! printf '%s\n' $VALID_PROFILES | grep -qFx "$actual_conformance"; then
     err "conformance_profile invalid: got '$actual_conformance'; expected one of {$VALID_PROFILES}"
 fi
 
+# 3b. v2.1 REQUIRED top-level fields present (codex Round-3 finding).
+# Per SPEC §8.1, schema_uri + source_commit are REQUIRED at v2.1.
+# source_tag is OPTIONAL. The fields MAY be empty string at authoring
+# time (codex Round-2 honest-disclosure pattern); validator checks
+# only presence of the key, not non-emptiness.
+for required_v21_key in schema_uri source_commit; do
+    if ! grep -qE "^${required_v21_key}:" "$MANIFEST"; then
+        err "v2.1 REQUIRED top-level key missing: $required_v21_key (per SPEC §8.1)"
+    fi
+done
+
 # 6. product_name match (search for product_name under intent).
 actual_product_name="$(grep -E '^[[:space:]]+product_name:' "$MANIFEST" | head -1 | sed -E 's/^[[:space:]]+product_name:[[:space:]]*//;s/^"//;s/"$//')"
 if [ "$actual_product_name" != "$EXPECTED_PRODUCT_NAME" ]; then
@@ -176,8 +187,15 @@ media_type_extension() {
     esac
 }
 
-for facet in "${!facet_primary[@]}"; do
-    primary="${facet_primary[$facet]}"
+# Iterate every facet from the manifest, not just those that parsed a
+# primary value. This closes the codex Round-3 BLOCKER where facets
+# without a parsed primary silently escaped the check branch.
+for facet in "${facet_slugs[@]}"; do
+    primary="${facet_primary[$facet]:-}"
+    if [ -z "$primary" ]; then
+        err "facet '$facet' has no primary field in the manifest (per SPEC §8.3 primary is REQUIRED for every facet)"
+        continue
+    fi
     if [[ "$primary" == */ ]]; then
         # Directory primary — v2.1 requires primary_index.
         if [ ! -d "$BUNDLE_DIR/$primary" ]; then
@@ -187,6 +205,13 @@ for facet in "${!facet_primary[@]}"; do
         pi="${facet_primary_index[$facet]:-}"
         if [ -z "$pi" ]; then
             err "facet '$facet' primary is directory ($primary) but primary_index is missing (v2.1 schema §8.3 REQUIRED for directory primaries)"
+            continue
+        fi
+        # primary_index MUST be INSIDE the primary directory
+        # (codex Round-3 BLOCKER refinement: previously the script
+        # checked file existence anywhere, not directory containment).
+        if [[ "$pi" != "$primary"* ]]; then
+            err "facet '$facet' primary_index ($pi) is NOT inside primary directory ($primary); SPEC §8.3 requires containment"
             continue
         fi
         if [ ! -f "$BUNDLE_DIR/$pi" ]; then

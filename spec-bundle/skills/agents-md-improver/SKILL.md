@@ -39,7 +39,7 @@ policy repo) MUST have:
   polling / workspace / hooks / agent / codex / bes); a one-section
   per-repo intro naming the repo and its canonical verify command;
   the fleet-baseline prompt body verbatim from
-  `file://workpads/WORKFLOW.body.md` (or
+  `<adopter-policy-repo>/agents/templates/WORKFLOW.body.md` (fleet-baseline reference; bes-fleet-policy-layout-specific) (or
   `.workpads/WORKFLOW.body.md` in a child repo).
   Per-repo content lives ABOVE the body; the body is fleet-uniform.
   Drift between a repo's WORKFLOW.md body and the fleet baseline

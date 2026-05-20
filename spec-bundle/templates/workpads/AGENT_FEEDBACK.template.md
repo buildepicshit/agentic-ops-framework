@@ -5,7 +5,7 @@ bugs, proposals, or fleet-policy misalignments. Replaces the
 ad-hoc "agent complains verbally and owner relays to fleet" path.
 
 **Authority:**
-`file://skills/agent-feedback/SKILL.md`;
+`file://spec-bundle/skills/agent-feedback/SKILL.md`;
 `file://workflows/agent-feedback.md`.
 
 ## How to use

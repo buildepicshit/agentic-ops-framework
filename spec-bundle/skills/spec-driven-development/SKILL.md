@@ -58,7 +58,7 @@ The full lifecycle for non-trivial work is a 13-phase pipeline:
    or via tooling) and record `linear_issue` in TASK.md
    front-matter. the autonomous-dispatch runner picks up the issues and runs per-issue
    workspaces using the repo's `WORKFLOW.md`. Per-task workpad
-   discipline applies (see `file://workpads/WORKFLOW.body.md`).
+   discipline applies (see `<adopter-policy-repo>/agents/templates/WORKFLOW.body.md` (fleet-baseline reference; bes-fleet-policy-layout-specific)).
 10. **Execute** — primary agents (one per tracker issue / TASK.md)
     work each slice within an isolated workspace. The TASK.md is
     immutable except for §6 Evidence; the parent SPEC is immutable
@@ -72,8 +72,8 @@ The full lifecycle for non-trivial work is a 13-phase pipeline:
     different model family from primary) reviews the diff against
     the parent SPEC. Findings are recorded in the workpad
     `Validation` section. Primary agent addresses each finding or
-    posts justified pushback. See `file://skills/code-review/SKILL.md`
-    and `file://skills/spec-review/SKILL.md`.
+    posts justified pushback. See `file://spec-bundle/skills/code-review/SKILL.md`
+    and `file://spec-bundle/skills/spec-review/SKILL.md`.
 12. **Verify** — when all TASK.md reach `done`, run the parent
     SPEC's full `acceptance_commands` as the integration gate.
     Record exit status and output excerpts. The
@@ -92,7 +92,7 @@ The IDEA → SPEC → review → approve → execute → verify → close
 order is the default. One recognized exception (capture-after,
 formalized as the `fastpath` SPEC type) applies when ALL its
 thresholds hold; see
-`file://skills/spec-driven-development/references/capture-after-and-fastpath.md`
+`file://spec-bundle/skills/spec-driven-development/references/capture-after-and-fastpath.md`
 for the procedure, acceptance conditions, and reference
 precedents.
 
@@ -102,19 +102,19 @@ Specs are typed. Pick the matching template from `templates/`
 (repo-relative under `your-policy-repo`; under `.templates/` in
 each child product repo):
 
-- `task` → `templates/SPEC.task.template.md` — concrete, scoped,
+- `task` → `spec-bundle/templates/SPEC.task.template.md` — concrete, scoped,
   verifiable work. Default.
-- `contract` → `templates/SPEC.contract.template.md` — specifies
+- `contract` → `spec-bundle/templates/SPEC.contract.template.md` — specifies
   behavior that future agents implement against (state machines,
   failure models, observability, reference algorithms). Bar c
   ("the autonomous-dispatch runner-grade") with REQUIRED lint.
-- `decision` → `templates/SPEC.decision.template.md` — chooses
+- `decision` → `spec-bundle/templates/SPEC.decision.template.md` — chooses
   between named candidates with rationale, locks, and reversal plan.
 
 Cross-template conventions (front-matter fields, citation grammar,
 RFC 2119 rules, section-naming) live in the shared schema at
 `templates/SPEC.schema.md`. The IDEA artefact uses
-`templates/IDEA.template.md`.
+`spec-bundle/templates/IDEA.template.md`.
 
 Type selection is an authoring concern; defer to
 [`spec-authoring`](../spec-authoring/SKILL.md) §"Type selection".

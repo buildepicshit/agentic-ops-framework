@@ -256,12 +256,20 @@ what the bundle contains and what conformance profile it
 claims. Schema:
 
 ```yaml
-# spec-bundle/manifest.yaml
-spec_version: "2.0.0"               # semver; this manifest schema version
+# spec-bundle/manifest.yaml — v2.1.0 schema example
+# (updated from v2.0.0 per codex remediation §7.E / §7.F;
+# Round-3 finding flagged the original v2.0.0 example here
+# as stale relative to §8.1 v2.1.0 formal schema)
+spec_version: "2.1.0"               # semver; this manifest schema version
 bundle_version: "2.0.0"             # semver; this specific bundle release
 conformance_profile: "core"         # core | extension | real-integration
 generated_on: "YYYY-MM-DD"          # ISO date the bundle was assembled
-generator: "agentic-ops-framework"   # source repo identifier
+generator: "agentic-ops-framework"  # source repo identifier
+schema_uri: "<URL pin>"             # v2.1 REQUIRED; pin to immutable
+                                    # commit / tag at release time
+source_commit: ""                   # v2.1 REQUIRED; populated by
+                                    # release tooling at tag time
+source_tag: ""                      # v2.1 OPTIONAL; empty between tags
 
 intent:
   product_name: "agentic-ops-framework"
@@ -278,37 +286,64 @@ facets:
   architecture:
     path: "architecture/"
     primary: "architecture/CONTEXT.md"
+    media_type: "text/markdown"     # v2.1 RECOMMENDED
+    status: "complete"              # v2.1 RECOMMENDED: complete | partial | reserved
   deployment:
     path: "deployment/"
     primary: "deployment/install.md"
+    media_type: "text/markdown"
+    status: "complete"
   behavior:
     path: "behavior/"
     primary: "behavior/features/"
+    primary_index: "behavior/features/<entry>.feature"  # v2.1 conditionally REQUIRED when primary is directory
+    media_type: "text/x.gherkin"
+    status: "complete"
   customization:
     path: "customization/"
     primary: "customization/contract.md"
+    media_type: "text/markdown"
+    status: "complete"
   decisions:
     path: "decisions/"
     primary: "decisions/INDEX.md"
+    media_type: "text/markdown"
+    status: "complete"
   quality:
     path: "quality/"
     primary: "quality/requirements.md"
+    media_type: "text/markdown"
+    status: "complete"
   operations:
     path: "operations/"
     primary: "operations/failures.md"
+    media_type: "text/markdown"
+    status: "complete"
   non-goals:
     path: "non-goals/"
     primary: "non-goals/INDEX.md"
+    media_type: "text/markdown"
+    status: "complete"
 
 resources:
   schema:
     path: "schema/SPEC.schema.md"
+    media_type: "text/markdown"
   templates:
     path: "templates/"
+    media_type: "text/markdown"
   skills:
     path: "skills/"
+    media_type: "text/markdown"
   conformance:
     path: "conformance/"
+    media_type: "application/vnd.framework.conformance-suite"
+    status: "reserved"              # v2.1: explicit scaffold disclosure
+
+provenance:                         # v2.1 OPTIONAL — see §8.6
+  sbom_format: "cyclonedx"          # cyclonedx | spdx
+  sbom_ref: ""                      # populated by release tooling
+  slsa_level: ""                    # SLSA attestation level
 
 signature:
   status: "unsigned"                # signed | unsigned
