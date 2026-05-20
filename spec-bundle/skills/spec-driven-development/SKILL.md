@@ -113,7 +113,7 @@ each child product repo):
 
 Cross-template conventions (front-matter fields, citation grammar,
 RFC 2119 rules, section-naming) live in the shared schema at
-`templates/SPEC.schema.md`. The IDEA artefact uses
+`spec-bundle/schema/SPEC.schema.md`. The IDEA artefact uses
 `spec-bundle/templates/IDEA.template.md`.
 
 Type selection is an authoring concern; defer to
@@ -127,7 +127,7 @@ contract-grade and citation-disciplined: every factual claim carries
 a citation prefix from the allowed grammar (`file://`, `cmd://`,
 `url://`, `owner://`, `judgment://owner`, `judgment://agent-synthesis`
 paired with owner-affirmation). Owner Judgments include verbatim
-transcript quotes. See `templates/SPEC.schema.md` §2 for the full
+transcript quotes. See `spec-bundle/schema/SPEC.schema.md` §2 for the full
 grammar.
 
 ## Cascade by id-citation (non-propagating SPECs)

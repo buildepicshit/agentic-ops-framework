@@ -73,7 +73,7 @@ The four authoring templates live at:
   named options.
 
 Cross-template conventions (front-matter schema, citation grammar,
-RFC 2119 rules, section naming) live in `templates/SPEC.schema.md`.
+RFC 2119 rules, section naming) live in `spec-bundle/schema/SPEC.schema.md`.
 Templates reference that schema rather than restating it. Read the
 schema before authoring.
 
@@ -99,7 +99,7 @@ Decision tree:
    YES → `fastpath`. Use `SPEC.fastpath.template.md`. No IDEA, no
    review, no decomposition. Capture-after by default; lands at
    `status: closed` in the same commit as the work. See
-   `skills/fast-path/SKILL.md` for thresholds. **If ANY
+   `spec-bundle/skills/fast-path/SKILL.md` for thresholds. **If ANY
    threshold is missed, do not use fastpath** — fall through to
    the steps below.
 1. **Is this a binding choice between two or more named options
@@ -236,7 +236,7 @@ Open Questions, not for gate failures.
 ## Hard Rules
 
 - Do not author IDEA.md or SPEC.md without reading
-  `templates/SPEC.schema.md` first.
+  `spec-bundle/schema/SPEC.schema.md` first.
 - Do not use a SPEC template without first picking a type per the
   decision tree above.
 - Do not put uncited factual claims in any artefact. Memory is

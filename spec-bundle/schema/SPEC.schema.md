@@ -188,7 +188,7 @@ only reverse edge from `in-progress`.
 
 Cross-validation gate: `in-progress → in-review` requires findings
 from `cross_validation_lane` to be addressed (or explicit
-justified pushback) per `skills/code-review/SKILL.md` and the
+justified pushback) per `spec-bundle/skills/code-review/SKILL.md` and the
 spec-review skill in your harness.
 
 Integration gate: when ALL TASK.md in a parent SPEC's `tasks/`
@@ -362,16 +362,16 @@ The `spec-review` skill MUST NOT set `status: approved`.
 
 ## 6. Cross-references
 
-- Templates: `templates/SPEC.task.template.md`,
-  `templates/SPEC.contract.template.md`,
-  `templates/SPEC.decision.template.md`,
-  `templates/SPEC.fastpath.template.md`,
+- Templates: `spec-bundle/templates/SPEC.task.template.md`,
+  `spec-bundle/templates/SPEC.contract.template.md`,
+  `spec-bundle/templates/SPEC.decision.template.md`,
+  `spec-bundle/templates/SPEC.fastpath.template.md`,
   `templates/IDEA.template.md`,
   `templates/TASK.template.md`.
 - Lint script: `scripts/lint-spec.sh`.
 - Skill validator: `scripts/validate-skill-frontmatter.sh`.
-- Procedure-only skills: `skills/verification/SKILL.md`,
-  `skills/code-review/SKILL.md`, `skills/release-pr/SKILL.md`,
-  `skills/spec-evidence-governance/SKILL.md`,
-  `skills/diagnosis/SKILL.md`, `skills/tdd/SKILL.md`.
+- Procedure-only skills: `spec-bundle/skills/verification/SKILL.md`,
+  `spec-bundle/skills/code-review/SKILL.md`, `spec-bundle/skills/release-pr/SKILL.md`,
+  `spec-bundle/skills/spec-evidence-governance/SKILL.md`,
+  `spec-bundle/skills/diagnosis/SKILL.md`, `spec-bundle/skills/tdd/SKILL.md`.
 - Operating model: `OPERATING_MODEL.md`.

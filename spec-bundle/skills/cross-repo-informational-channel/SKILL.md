@@ -82,7 +82,7 @@ the form:
 ### Reading (every agent, every session start)
 
 Read the last 5 inbox entries as part of orientation (per
-`skills/repo-orientation/SKILL.md`). Each entry tells you
+`spec-bundle/skills/repo-orientation/SKILL.md`). Each entry tells you
 something that changed externally or hands off work
 continuation. Acknowledge any `expects_ack: true` entries by
 appending an ack entry beneath the original.

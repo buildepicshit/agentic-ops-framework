@@ -61,7 +61,7 @@ question Z.]
 - Truncate this file to the most recent 30 entries on archival
   pass; do not let it grow unboundedly.
 - Entries citing facts (lint output, commit hash, etc.) MUST use
-  the citation grammar from `templates/SPEC.schema.md` §2.
+  the citation grammar from `spec-bundle/schema/SPEC.schema.md` §2.
 - Do NOT include secrets, credentials, or owner private content.
   This file may be read by any agent entering this repo.
 

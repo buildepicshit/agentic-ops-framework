@@ -61,14 +61,29 @@ if ! printf '%s\n' $VALID_PROFILES | grep -qFx "$actual_conformance"; then
     err "conformance_profile invalid: got '$actual_conformance'; expected one of {$VALID_PROFILES}"
 fi
 
-# 3b. v2.1 REQUIRED top-level fields present (codex Round-3 finding).
-# Per SPEC §8.1, schema_uri + source_commit are REQUIRED at v2.1.
-# source_tag is OPTIONAL. The fields MAY be empty string at authoring
-# time (codex Round-2 honest-disclosure pattern); validator checks
-# only presence of the key, not non-emptiness.
-for required_v21_key in schema_uri source_commit; do
-    if ! grep -qE "^${required_v21_key}:" "$MANIFEST"; then
-        err "v2.1 REQUIRED top-level key missing: $required_v21_key (per SPEC §8.1)"
+# 3b. REQUIRED top-level field presence (codex Round-3 + Round-4).
+# Per SPEC §8.1, the following are REQUIRED:
+# - v2.0 baseline: spec_version, bundle_version, conformance_profile,
+#   generated_on, generator (spec_version + conformance_profile
+#   already validated above).
+# - v2.1 additions: schema_uri, source_commit.
+# Field values MAY be empty string at authoring time per the
+# codex Round-2 honest-disclosure pattern; validator checks only
+# presence of the key, not non-emptiness. source_tag stays OPTIONAL.
+for required_key in bundle_version generated_on generator schema_uri source_commit; do
+    if ! grep -qE "^${required_key}:" "$MANIFEST"; then
+        err "REQUIRED top-level key missing: $required_key (per SPEC §8.1)"
+    fi
+done
+
+# 3c. REQUIRED intent block fields (codex Round-4 finding).
+# Per SPEC §8.2, intent MUST have product_name, product_purpose,
+# developer_authority, installer_authority. product_name already
+# validated above via actual_product_name check; here we verify
+# the other three keys are declared inside the intent block.
+for required_intent_key in product_purpose developer_authority installer_authority; do
+    if ! grep -qE "^[[:space:]]+${required_intent_key}:" "$MANIFEST"; then
+        err "REQUIRED intent key missing: $required_intent_key (per SPEC §8.2)"
     fi
 done
 
@@ -208,10 +223,26 @@ for facet in "${facet_slugs[@]}"; do
             continue
         fi
         # primary_index MUST be INSIDE the primary directory
-        # (codex Round-3 BLOCKER refinement: previously the script
-        # checked file existence anywhere, not directory containment).
+        # (codex Round-3 + Round-4: the string-prefix check was
+        # fooled by path traversal like "behavior/features/../../
+        # architecture/CONTEXT.md" which prefix-matched but
+        # resolved outside the primary directory. Semantic
+        # containment via canonicalised paths is the fix.)
         if [[ "$pi" != "$primary"* ]]; then
-            err "facet '$facet' primary_index ($pi) is NOT inside primary directory ($primary); SPEC §8.3 requires containment"
+            err "facet '$facet' primary_index ($pi) is NOT inside primary directory ($primary); SPEC §8.3 requires containment (lexical prefix check)"
+            continue
+        fi
+        # Semantic-containment check: canonicalise both paths and
+        # verify the canonicalised primary_index sits inside the
+        # canonicalised primary directory. Defeats ../ traversal.
+        canon_primary="$(cd "$BUNDLE_DIR/$primary" 2>/dev/null && pwd)"
+        canon_pi_dir="$(cd "$BUNDLE_DIR/$(dirname "$pi")" 2>/dev/null && pwd)"
+        if [ -z "$canon_primary" ] || [ -z "$canon_pi_dir" ]; then
+            err "facet '$facet' primary or primary_index cannot be canonicalised (primary=$primary, primary_index=$pi)"
+            continue
+        fi
+        if [[ "$canon_pi_dir" != "$canon_primary"* ]]; then
+            err "facet '$facet' primary_index ($pi) resolves OUTSIDE primary directory ($primary) after canonicalisation; SPEC §8.3 requires semantic containment"
             continue
         fi
         if [ ! -f "$BUNDLE_DIR/$pi" ]; then
